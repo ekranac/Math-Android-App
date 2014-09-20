@@ -52,6 +52,7 @@ public class MainActivity extends Activity {
         mViewPager = (ViewPager) findViewById(R.id.pager);
         mViewPager.setAdapter(mSectionsPagerAdapter);
 
+        mViewPager.setCurrentItem(1);
     }
 
 
@@ -88,9 +89,16 @@ public class MainActivity extends Activity {
 
         @Override
         public Fragment getItem(int position) {
-            // getItem is called to instantiate the fragment for the given page.
-            // Return a PlaceholderFragment (defined as a static inner class below).
-            return PlaceholderFragment.newInstance(position + 1);
+            switch(position)
+            {
+                case 0:
+                    return new CalculatorFragment();
+                case 1:
+                    return new PlaceholderFragment();
+                case 2:
+                    return new CalculatorFragment();
+            }
+            return null;
         }
 
         @Override
@@ -122,16 +130,6 @@ public class MainActivity extends Activity {
 
         private ArrayAdapter<String> mForecastAdapter;
 
-        public static PlaceholderFragment newInstance(int sectionNumber) {
-            PlaceholderFragment fragment = new PlaceholderFragment();
-            Bundle args = new Bundle();
-            args.putInt(ARG_SECTION_NUMBER, sectionNumber);
-            fragment.setArguments(args);
-            return fragment;
-        }
-
-        public PlaceholderFragment() {
-        }
 
         @Override
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -168,5 +166,17 @@ public class MainActivity extends Activity {
             return rootView;
         }
     }
+
+
+    public static class CalculatorFragment extends Fragment {
+        @Override
+        public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                                 Bundle savedInstanceState) {
+            View rootView = inflater.inflate(R.layout.fragment_calculator, container, false);
+
+            return rootView;
+        }
+    }
+
 
 }
