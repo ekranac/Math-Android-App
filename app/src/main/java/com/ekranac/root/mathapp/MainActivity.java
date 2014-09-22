@@ -8,6 +8,7 @@ import java.util.Locale;
 import android.app.Activity;
 import android.app.Fragment;
 import android.app.FragmentManager;
+import android.content.DialogInterface;
 import android.support.v13.app.FragmentPagerAdapter;
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
@@ -18,23 +19,16 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.TextView;
+
+import org.w3c.dom.Text;
 
 
 public class MainActivity extends Activity {
+    TextView calculatorOne;
 
-    /**
-     * The {@link android.support.v4.view.PagerAdapter} that will provide
-     * fragments for each of the sections. We use a
-     * {@link FragmentPagerAdapter} derivative, which will keep every
-     * loaded fragment in memory. If this becomes too memory intensive, it
-     * may be best to switch to a
-     * {@link android.support.v13.app.FragmentStatePagerAdapter}.
-     */
     SectionsPagerAdapter mSectionsPagerAdapter;
 
-    /**
-     * The {@link ViewPager} that will host the section contents.
-     */
     ViewPager mViewPager;
 
     @Override
@@ -42,51 +36,22 @@ public class MainActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-
-
-        // Create the adapter that will return a fragment for each of the three
-        // primary sections of the activity.
         mSectionsPagerAdapter = new SectionsPagerAdapter(getFragmentManager());
 
-        // Set up the ViewPager with the sections adapter.
         mViewPager = (ViewPager) findViewById(R.id.pager);
         mViewPager.setAdapter(mSectionsPagerAdapter);
 
-        mViewPager.setCurrentItem(1);
+        mViewPager.setCurrentItem(1); // Sets fragment with index 1 when index starts
     }
 
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.main, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-        if (id == R.id.action_settings) {
-            return true;
-        }
-        return super.onOptionsItemSelected(item);
-    }
-
-    
-
-    /**
-     * A {@link FragmentPagerAdapter} that returns a fragment corresponding to
-     * one of the sections/tabs/pages.
-     */
     public class SectionsPagerAdapter extends FragmentPagerAdapter {
 
         public SectionsPagerAdapter(FragmentManager fm) {
             super(fm);
         }
 
+        // Switch between fragments based on positon
         @Override
         public Fragment getItem(int position) {
             switch(position)
@@ -101,12 +66,14 @@ public class MainActivity extends Activity {
             return null;
         }
 
+        // Number of pages
         @Override
         public int getCount() {
             // Show 3 total pages.
             return 3;
         }
 
+        // Page/ fragment title
         @Override
         public CharSequence getPageTitle(int position) {
             Locale l = Locale.getDefault();
@@ -122,13 +89,13 @@ public class MainActivity extends Activity {
         }
     }
 
-    /**
-     * A placeholder fragment containing a simple view.
-     */
+
+
+
     public static class PlaceholderFragment extends Fragment {
         private static final String ARG_SECTION_NUMBER = "section_number";
 
-        private ArrayAdapter<String> mForecastAdapter;
+        private ArrayAdapter<String> mAdapter; // Predefined ArrayAdapter
 
 
         @Override
@@ -136,6 +103,7 @@ public class MainActivity extends Activity {
                 Bundle savedInstanceState) {
             View rootView = inflater.inflate(R.layout.fragment_main, container, false);
 
+            // Raw data
             String[] forecastArray=
                     {
                             "Burek",
@@ -149,19 +117,25 @@ public class MainActivity extends Activity {
                             "Burek"
                     };
 
+            // Transforms raw data from Array to ArrayList so it can be implemented to adapter later
             List<String> weekForecast = new ArrayList<String>(Arrays.asList(forecastArray));
 
 
-            mForecastAdapter = new ArrayAdapter<String>(
+            // Adapter set
+            mAdapter = new ArrayAdapter<String>(
+                    // Get context of the activity
                     getActivity(),
+                    // List item layout
                     R.layout.list_item,
+                    // ID of the TextView to populate
                     R.id.list_item_textview,
+                    // ArrayList data
                     weekForecast
             );
 
 
             ListView listView = (ListView) rootView.findViewById(R.id.listview_main);
-            listView.setAdapter(mForecastAdapter);
+            listView.setAdapter(mAdapter);
 
             return rootView;
         }

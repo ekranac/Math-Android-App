@@ -15,9 +15,16 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/calculator_display"
+        android:id="@+id/calculator_display_frame"
         android:layout_weight="1"
-        android:orientation="vertical"/>
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:id="@+id/display_content"/>
+
+        </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -28,21 +35,17 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="fill_parent"
-                android:text="7"
-                android:layout_weight="1"
-                android:gravity="center"/>
+                android:text="C"
+                android:layout_weight="3"
+                android:gravity="center"
+                android:id="@+id/calculator_clear"/>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="fill_parent"
-                android:text="8"
+                android:text="÷"
                 android:layout_weight="1"
-                android:gravity="center"/>
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="fill_parent"
-                android:text="9"
-                android:layout_weight="1"
-                android:gravity="center"/>
+                android:gravity="center"
+                android:id="@+id/calculator_divide"/>
 
         </LinearLayout>
 
@@ -50,28 +53,36 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/calculator_second_row"
-            android:layout_below="@id/calculator_first_row"
-            android:layout_weight="1"
-            >
+            android:layout_weight="1">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="fill_parent"
-                android:text="4"
+                android:text="7"
                 android:layout_weight="1"
-                android:gravity="center"/>
+                android:gravity="center"
+                android:id="@+id/calculator_seven"/>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="fill_parent"
-                android:text="5"
+                android:text="8"
                 android:layout_weight="1"
-                android:gravity="center"/>
+                android:gravity="center"
+                android:id="@+id/calculator_eight"/>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="fill_parent"
-                android:text="6"
+                android:text="9"
                 android:layout_weight="1"
-                android:gravity="center"/>
+                android:gravity="center"
+                android:id="@+id/calculator_nine"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="fill_parent"
+                android:text="×"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:id="@+id/calculator_multiply"/>
 
         </LinearLayout>
 
@@ -79,6 +90,44 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/calculator_third_row"
+            android:layout_below="@id/calculator_first_row"
+            android:layout_weight="1">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="fill_parent"
+                android:text="4"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:id="@+id/calculator_four"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="fill_parent"
+                android:text="5"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:id="@+id/calculator_five"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="fill_parent"
+                android:text="6"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:id="@+id/calculator_six"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="fill_parent"
+                android:text="-"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:id="@+id/calculator_subtract"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/calculator_fourth_row"
             android:layout_below="@id/calculator_second_row"
             android:layout_weight="1">
 
@@ -87,19 +136,61 @@
                 android:layout_height="fill_parent"
                 android:text="1"
                 android:layout_weight="1"
-                android:gravity="center"/>
+                android:gravity="center"
+                android:id="@+id/calculator_one"/>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="fill_parent"
                 android:text="2"
                 android:layout_weight="1"
-                android:gravity="center"/>
+                android:gravity="center"
+                android:id="@+id/calculator_two"/>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="fill_parent"
                 android:text="3"
                 android:layout_weight="1"
-                android:gravity="center"/>
+                android:gravity="center"
+                android:id="@+id/calculator_three"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="fill_parent"
+                android:text="+"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:id="@+id/calculator_add"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/calculator_fifth_row"
+            android:layout_below="@id/calculator_second_row"
+            android:layout_weight="1">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="fill_parent"
+                android:text="0"
+                android:layout_weight="2"
+                android:gravity="center"
+                android:id="@+id/calculator_zero"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="fill_parent"
+                android:text=","
+                android:layout_weight="1"
+                android:gravity="center"
+                android:id="@+id/calculator_point"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="fill_parent"
+                android:text="="
+                android:layout_weight="1"
+                android:gravity="center"
+                android:id="@+id/calculator_equals"/>
 
         </LinearLayout>
 
