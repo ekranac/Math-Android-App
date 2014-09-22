@@ -8,24 +8,21 @@ import java.util.Locale;
 import android.app.Activity;
 import android.app.Fragment;
 import android.app.FragmentManager;
-import android.content.DialogInterface;
 import android.support.v13.app.FragmentPagerAdapter;
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
+import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import org.w3c.dom.Text;
 
 
 public class MainActivity extends Activity {
-    TextView calculatorOne;
 
     SectionsPagerAdapter mSectionsPagerAdapter;
 
@@ -34,7 +31,12 @@ public class MainActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        // Removes title bar
+        this.requestWindowFeature(Window.FEATURE_NO_TITLE);
+
         setContentView(R.layout.activity_main);
+
 
         mSectionsPagerAdapter = new SectionsPagerAdapter(getFragmentManager());
 
@@ -139,16 +141,159 @@ public class MainActivity extends Activity {
 
             return rootView;
         }
+
     }
 
 
-    public static class CalculatorFragment extends Fragment {
+    public static class CalculatorFragment extends Fragment implements View.OnClickListener {
+        TextView calcZero,calcOne,calcTwo,calcThree,calcFour,calcFive,calcSix,calcSeven,calcEight,calcNine,
+                 calcClear, calcDisplay, calcPoint;
         @Override
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
                                  Bundle savedInstanceState) {
             View rootView = inflater.inflate(R.layout.fragment_calculator, container, false);
 
+            calcDisplay = (TextView) rootView.findViewById(R.id.display_content);
+
+
+            calcOne = (TextView) rootView.findViewById(R.id.calculator_one);
+            calcOne.setOnClickListener(this);
+
+            calcTwo = (TextView) rootView.findViewById(R.id.calculator_two);
+            calcTwo.setOnClickListener(this);
+
+            calcThree = (TextView) rootView.findViewById(R.id.calculator_three);
+            calcThree.setOnClickListener(this);
+
+            calcFour = (TextView) rootView.findViewById(R.id.calculator_four);
+            calcFour.setOnClickListener(this);
+
+            calcFive = (TextView) rootView.findViewById(R.id.calculator_five);
+            calcFive.setOnClickListener(this);
+
+            calcSix = (TextView) rootView.findViewById(R.id.calculator_six);
+            calcSix.setOnClickListener(this);
+
+            calcSeven = (TextView) rootView.findViewById(R.id.calculator_seven);
+            calcSeven.setOnClickListener(this);
+
+            calcEight = (TextView) rootView.findViewById(R.id.calculator_eight);
+            calcEight.setOnClickListener(this);
+
+            calcNine = (TextView) rootView.findViewById(R.id.calculator_nine);
+            calcNine.setOnClickListener(this);
+
+            calcZero = (TextView) rootView.findViewById(R.id.calculator_zero);
+            calcZero.setOnClickListener(this);
+
+            calcClear = (TextView) rootView.findViewById(R.id.calculator_clear);
+            calcClear.setOnClickListener(this);
+
+            calcPoint = (TextView) rootView.findViewById(R.id.calculator_point);
+            calcPoint.setOnClickListener(this);
+
             return rootView;
+        }
+
+        @Override
+        public void onClick(View v)
+        {
+
+            String currentContent = null;
+            String newContent= null;
+            switch(v.getId())
+            {
+                case R.id.calculator_one:
+                    currentContent = calcDisplay.getText().toString();
+                    newContent = currentContent + '1';
+
+                    calcDisplay.setText(newContent);
+                    break;
+
+                case R.id.calculator_two:
+                    currentContent = calcDisplay.getText().toString();
+                    newContent = currentContent + '2';
+
+                    calcDisplay.setText(newContent);
+                    break;
+
+                case R.id.calculator_three:
+                    currentContent = calcDisplay.getText().toString();
+                    newContent = currentContent + '3';
+
+                    calcDisplay.setText(newContent);
+                    break;
+
+                case R.id.calculator_four:
+                    currentContent = calcDisplay.getText().toString();
+                    newContent = currentContent + '4';
+
+                    calcDisplay.setText(newContent);
+                    break;
+
+                case R.id.calculator_five:
+                    currentContent = calcDisplay.getText().toString();
+                    newContent = currentContent + '5';
+
+                    calcDisplay.setText(newContent);
+                    break;
+
+                case R.id.calculator_six:
+                    currentContent = calcDisplay.getText().toString();
+                    newContent = currentContent + '6';
+
+                    calcDisplay.setText(newContent);
+                    break;
+
+                case R.id.calculator_seven:
+                    currentContent = calcDisplay.getText().toString();
+                    newContent = currentContent + '7';
+
+                    calcDisplay.setText(newContent);
+                    break;
+
+                case R.id.calculator_eight:
+                    currentContent = calcDisplay.getText().toString();
+                    newContent = currentContent + '8';
+
+                    calcDisplay.setText(newContent);
+                    break;
+
+                case R.id.calculator_nine:
+                    currentContent = calcDisplay.getText().toString();
+                    newContent = currentContent + '9';
+
+                    calcDisplay.setText(newContent);
+                    break;
+
+                case R.id.calculator_zero:
+                    currentContent = calcDisplay.getText().toString();
+                    newContent = currentContent + '0';
+
+                    calcDisplay.setText(newContent);
+                    break;
+
+                case R.id.calculator_clear:
+                    calcDisplay.setText("");
+                    break;
+
+                case R.id.calculator_point:
+                    currentContent = calcDisplay.getText().toString();
+                    if(currentContent.contains("."))
+                    {
+                        Log.i("Vejica", "Jp");
+                        calcDisplay.setText(currentContent);
+                    }
+                    else
+                    {
+                        newContent = currentContent + '.';
+
+                        Log.i("Vejica", "Nope");
+                        calcDisplay.setText(newContent);
+                        break;
+                    }
+
+            }
         }
     }
 
