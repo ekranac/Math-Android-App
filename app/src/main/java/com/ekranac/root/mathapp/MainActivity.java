@@ -148,12 +148,14 @@ public class MainActivity extends Activity {
     public static class CalculatorFragment extends Fragment implements View.OnClickListener {
         TextView calcZero,calcOne,calcTwo,calcThree,calcFour,calcFive,calcSix,calcSeven,calcEight,calcNine,
                  calcClear, calcDisplay, calcPoint;
+        boolean hasOperator;
         @Override
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
                                  Bundle savedInstanceState) {
             View rootView = inflater.inflate(R.layout.fragment_calculator, container, false);
 
             calcDisplay = (TextView) rootView.findViewById(R.id.display_content);
+            calcDisplay.setText("0");
 
 
             calcOne = (TextView) rootView.findViewById(R.id.calculator_one);
@@ -195,6 +197,43 @@ public class MainActivity extends Activity {
             return rootView;
         }
 
+
+        // When calculator numbers are pressed
+        public void calcNumClick(int num)
+        {
+            String currentContent = calcDisplay.getText().toString();
+            calcDisplay = (TextView) getActivity().findViewById(R.id.display_content);
+            String newContent;
+            if(num!=0)
+            {
+                if(currentContent=="0")
+                {
+                    newContent = Integer.toString(num);
+                    calcDisplay.setText(newContent);
+                }
+                else
+                {
+                    newContent = currentContent + Integer.toString(num);
+                    calcDisplay.setText(newContent);
+                }
+            }
+
+            else if(num==0)
+            {
+                if(currentContent=="0")
+                {
+                    calcDisplay.setText(currentContent);
+                }
+                else
+                {
+                    newContent = currentContent + '0';
+                    calcDisplay.setText(newContent);
+                }
+            }
+
+        }
+
+
         @Override
         public void onClick(View v)
         {
@@ -204,91 +243,60 @@ public class MainActivity extends Activity {
             switch(v.getId())
             {
                 case R.id.calculator_one:
-                    currentContent = calcDisplay.getText().toString();
-                    newContent = currentContent + '1';
-
-                    calcDisplay.setText(newContent);
+                    calcNumClick(1);
                     break;
 
                 case R.id.calculator_two:
-                    currentContent = calcDisplay.getText().toString();
-                    newContent = currentContent + '2';
-
-                    calcDisplay.setText(newContent);
+                    calcNumClick(2);
                     break;
 
                 case R.id.calculator_three:
-                    currentContent = calcDisplay.getText().toString();
-                    newContent = currentContent + '3';
-
-                    calcDisplay.setText(newContent);
+                    calcNumClick(3);
                     break;
 
                 case R.id.calculator_four:
-                    currentContent = calcDisplay.getText().toString();
-                    newContent = currentContent + '4';
-
-                    calcDisplay.setText(newContent);
+                    calcNumClick(4);
                     break;
 
                 case R.id.calculator_five:
-                    currentContent = calcDisplay.getText().toString();
-                    newContent = currentContent + '5';
-
-                    calcDisplay.setText(newContent);
+                    calcNumClick(5);
                     break;
 
                 case R.id.calculator_six:
-                    currentContent = calcDisplay.getText().toString();
-                    newContent = currentContent + '6';
-
-                    calcDisplay.setText(newContent);
+                    calcNumClick(6);
                     break;
 
                 case R.id.calculator_seven:
-                    currentContent = calcDisplay.getText().toString();
-                    newContent = currentContent + '7';
-
-                    calcDisplay.setText(newContent);
+                    calcNumClick(7);
                     break;
 
                 case R.id.calculator_eight:
-                    currentContent = calcDisplay.getText().toString();
-                    newContent = currentContent + '8';
-
-                    calcDisplay.setText(newContent);
+                    calcNumClick(8);
                     break;
 
                 case R.id.calculator_nine:
-                    currentContent = calcDisplay.getText().toString();
-                    newContent = currentContent + '9';
-
-                    calcDisplay.setText(newContent);
+                    calcNumClick(9);
                     break;
 
                 case R.id.calculator_zero:
-                    currentContent = calcDisplay.getText().toString();
-                    newContent = currentContent + '0';
-
-                    calcDisplay.setText(newContent);
+                    calcNumClick(0);
                     break;
 
                 case R.id.calculator_clear:
-                    calcDisplay.setText("");
+                    calcDisplay.setText("0");
+                    hasOperator = !hasOperator;
                     break;
 
                 case R.id.calculator_point:
                     currentContent = calcDisplay.getText().toString();
                     if(currentContent.contains("."))
                     {
-                        Log.i("Vejica", "Jp");
                         calcDisplay.setText(currentContent);
                     }
                     else
                     {
                         newContent = currentContent + '.';
 
-                        Log.i("Vejica", "Nope");
                         calcDisplay.setText(newContent);
                         break;
                     }
