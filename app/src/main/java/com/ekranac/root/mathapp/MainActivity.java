@@ -148,7 +148,11 @@ public class MainActivity extends Activity {
     public static class CalculatorFragment extends Fragment implements View.OnClickListener {
         TextView calcZero,calcOne,calcTwo,calcThree,calcFour,calcFive,calcSix,calcSeven,calcEight,calcNine,
                  calcClear, calcDisplay, calcPoint;
+        TextView calcPlus, calcMinus, calcDivide, calcTimes;
+
         boolean hasOperator;
+
+
         @Override
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
                                  Bundle savedInstanceState) {
@@ -156,7 +160,6 @@ public class MainActivity extends Activity {
 
             calcDisplay = (TextView) rootView.findViewById(R.id.display_content);
             calcDisplay.setText("0");
-
 
             calcOne = (TextView) rootView.findViewById(R.id.calculator_one);
             calcOne.setOnClickListener(this);
@@ -193,6 +196,22 @@ public class MainActivity extends Activity {
 
             calcPoint = (TextView) rootView.findViewById(R.id.calculator_point);
             calcPoint.setOnClickListener(this);
+
+
+            // Operators
+
+
+            calcPlus = (TextView) rootView.findViewById(R.id.calculator_add);
+            calcPlus.setOnClickListener(this);
+
+            calcMinus = (TextView) rootView.findViewById(R.id.calculator_subtract);
+            calcMinus.setOnClickListener(this);
+
+            calcDivide = (TextView) rootView.findViewById(R.id.calculator_divide);
+            calcDivide.setOnClickListener(this);
+
+            calcTimes = (TextView) rootView.findViewById(R.id.calculator_multiply);
+            calcTimes.setOnClickListener(this);
 
             return rootView;
         }
@@ -298,8 +317,22 @@ public class MainActivity extends Activity {
                         newContent = currentContent + '.';
 
                         calcDisplay.setText(newContent);
-                        break;
                     }
+                    break;
+
+
+                case R.id.calculator_add:
+                    Log.i("Operator", "Plus");
+                    break;
+                case R.id.calculator_subtract:
+                    Log.i("Operator", "Minus");
+                    break;
+                case R.id.calculator_divide:
+                    Log.i("Operator", "Divide");
+                    break;
+                case R.id.calculator_multiply:
+                    Log.i("Operator", "Multiply");
+                    break;
 
             }
         }
