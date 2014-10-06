@@ -298,6 +298,7 @@ public class MainActivity extends Activity {
                     break;
 
                 case R.id.calculator_nine:
+                    calcNumClick(9);
                     break;
 
                 case R.id.calculator_zero:
@@ -327,6 +328,9 @@ public class MainActivity extends Activity {
 
 
 
+
+
+                // Operators
                 case R.id.calculator_add:
                     operatorIs="plus";
                     if(numOne==0)
@@ -343,8 +347,6 @@ public class MainActivity extends Activity {
                     }
                     numTwo=0.0;
                     calcDisplay.setText("");
-                    Log.i("Num One", Double.toString(numOne));
-                    Log.i("Num Two", Double.toString(numTwo));
                     break;
                 case R.id.calculator_subtract:
                     operatorIs="minus";
@@ -362,8 +364,6 @@ public class MainActivity extends Activity {
                     }
                     numTwo=0.0;
                     calcDisplay.setText("");
-                    Log.i("Num One", Double.toString(numOne));
-                    Log.i("Num Two", Double.toString(numTwo));
                     break;
                 case R.id.calculator_divide:
                     operatorIs="divide";
@@ -381,8 +381,6 @@ public class MainActivity extends Activity {
                     }
                     numTwo=0.0;
                     calcDisplay.setText("");
-                    Log.i("Num One", Double.toString(numOne));
-                    Log.i("Num Two", Double.toString(numTwo));
                     break;
                 case R.id.calculator_multiply:
                     operatorIs="multiply";
@@ -400,8 +398,6 @@ public class MainActivity extends Activity {
                     }
                     numTwo=0.0;
                     calcDisplay.setText("");
-                    Log.i("Num One", Double.toString(numOne));
-                    Log.i("Num Two", Double.toString(numTwo));
                     break;
 
 
@@ -438,7 +434,6 @@ public class MainActivity extends Activity {
                         numOne=result;
 
                     }
-                    Log.i("Result",Double.toString(result));
                     break;
             }
         }
