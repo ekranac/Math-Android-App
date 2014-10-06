@@ -149,9 +149,8 @@ public class MainActivity extends Activity {
         TextView calcZero,calcOne,calcTwo,calcThree,calcFour,calcFive,calcSix,calcSeven,calcEight,calcNine,
                  calcClear, calcDisplay, calcPoint, calcEquals;
         TextView calcPlus, calcMinus, calcDivide, calcTimes;
-        String numMain, numTmp;
         String operatorIs;
-        Double result;
+        Double numOne, numTwo, result;
 
 
 
@@ -160,8 +159,8 @@ public class MainActivity extends Activity {
                                  Bundle savedInstanceState) {
             View rootView = inflater.inflate(R.layout.fragment_calculator, container, false);
 
-            numMain = "0";
-            numTmp = "";
+            numOne=0.0;
+            numTwo=0.0;
 
             operatorIs="";
 
@@ -229,40 +228,31 @@ public class MainActivity extends Activity {
         // When calculator numbers are pressed
         public void calcNumClick(int num)
         {
-            String currentContent = calcDisplay.getText().toString();
-            calcDisplay = (TextView) getActivity().findViewById(R.id.display_content);
-            String newContent;
-            if(num!=0) // If you don't press 0 (9/10 times this is true :D )
+            String oldCalcDisplay = calcDisplay.getText().toString();
+            if(num!=0)
             {
-                if(currentContent=="0")
+                if(oldCalcDisplay=="0")
                 {
-                    newContent = Integer.toString(num);
-                    calcDisplay.setText(newContent);
-
-                    numTmp = numTmp + Integer.toString(num);
+                    calcDisplay.setText("");
+                    oldCalcDisplay="";
                 }
-                else
-                {
-                    newContent = currentContent + Integer.toString(num);
-                    calcDisplay.setText(newContent);
+                String newCalcDisplay = oldCalcDisplay + Integer.toString(num);
+                calcDisplay.setText(newCalcDisplay);
 
-                    numTmp = numTmp + Integer.toString(num);
-                }
+                numTwo = Double.parseDouble(newCalcDisplay);
             }
-
-
-            else if(num==0) // If you do press 0
+            if(num==0)
             {
-                if(currentContent=="0")
+                if(oldCalcDisplay=="0")
                 {
-                    calcDisplay.setText(currentContent);
+                    calcDisplay.setText(oldCalcDisplay);
                 }
                 else
                 {
-                    newContent = currentContent + '0';
-                    calcDisplay.setText(newContent);
+                    String newCalcDisplay = oldCalcDisplay + Integer.toString(num);
+                    calcDisplay.setText(newCalcDisplay);
 
-                    numTmp = numTmp + Integer.toString(num);
+                    numTwo = Double.parseDouble(newCalcDisplay);
                 }
             }
 
@@ -273,8 +263,6 @@ public class MainActivity extends Activity {
         public void onClick(View v)
         {
 
-            String currentContent = null;
-            String newContent= null;
             switch(v.getId())
             {
                 case R.id.calculator_one:
@@ -310,7 +298,6 @@ public class MainActivity extends Activity {
                     break;
 
                 case R.id.calculator_nine:
-                    calcNumClick(9);
                     break;
 
                 case R.id.calculator_zero:
@@ -319,129 +306,140 @@ public class MainActivity extends Activity {
 
                 case R.id.calculator_clear:
                     calcDisplay.setText("0");
-                    numMain= "0";
-                    numTmp = "";
+                    numOne=0.0;
+                    numTwo=0.0;
                     result=0.0;
                     break;
 
                 case R.id.calculator_point:
-                    currentContent = calcDisplay.getText().toString();
+                    String currentContent = calcDisplay.getText().toString();
                     if(currentContent.contains("."))
                     {
                         calcDisplay.setText(currentContent);
                     }
                     else
                     {
-                        newContent = currentContent + '.';
+                        String newContent = currentContent + '.';
 
                         calcDisplay.setText(newContent);
                     }
                     break;
 
 
-                case R.id.calculator_add:
-                    if(numTmp!="") // If the numTmp value isn't empty (it must not be)
-                    {
-                        operatorIs="plus";
-                        Double calculation = Double.parseDouble(numMain) + Double.parseDouble(numTmp);
-                        String calculationStr = Double.toString(calculation);
-                        numMain = calculationStr;
-                        numTmp="";
 
-                        calcDisplay.setText("");
+                case R.id.calculator_add:
+                    operatorIs="plus";
+                    if(numOne==0)
+                    {
+                        numOne += numTwo;
                     }
+                    else if(result!=0.0)
+                    {
+                        numOne=result;
+                    }
+                    else
+                    {
+                        numOne += numTwo;
+                    }
+                    numTwo=0.0;
+                    calcDisplay.setText("");
+                    Log.i("Num One", Double.toString(numOne));
+                    Log.i("Num Two", Double.toString(numTwo));
                     break;
                 case R.id.calculator_subtract:
-                    if(numTmp!="") // If the numTmp value isn't empty (it must not be)
+                    operatorIs="minus";
+                    if(numOne==0)
                     {
-                        operatorIs="minus";
-                        if(numMain!="0")
-                        {
-                            Double calculation = Double.parseDouble(numMain) - Double.parseDouble(numTmp);
-                            String calculationStr = Double.toString(calculation);
-                            numMain = calculationStr;
-                        }
-                        else
-                        {
-                            Double calculation = Double.parseDouble(numTmp);
-                            String calculationStr = Double.toString(calculation);
-                            numMain = calculationStr;
-                        }
-                        numTmp="";
-
-                        calcDisplay.setText("");
+                        numOne += numTwo;
                     }
+                    else if(result!=0.0)
+                    {
+                        numOne=result;
+                    }
+                    else
+                    {
+                        numOne -= numTwo;
+                    }
+                    numTwo=0.0;
+                    calcDisplay.setText("");
+                    Log.i("Num One", Double.toString(numOne));
+                    Log.i("Num Two", Double.toString(numTwo));
                     break;
                 case R.id.calculator_divide:
-                    if(numTmp!="") // If the numTmp value isn't empty (it must not be)
+                    operatorIs="divide";
+                    if(numOne==0)
                     {
-                        operatorIs="divide";
-                        if(numMain!="0")
-                        {
-                            Double calculation = Double.parseDouble(numMain) / Double.parseDouble(numTmp);
-                            String calculationStr = Double.toString(calculation);
-                            numMain = calculationStr;
-                        }
-                        else
-                        {
-                            Double calculation = Double.parseDouble(numTmp);
-                            String calculationStr = Double.toString(calculation);
-                            numMain = calculationStr;
-                        }
-                        numTmp="";
-
-                        calcDisplay.setText("");
+                        numOne += numTwo;
                     }
+                    else if(result!=0.0)
+                    {
+                        numOne=result;
+                    }
+                    else
+                    {
+                        numOne /= numTwo;
+                    }
+                    numTwo=0.0;
+                    calcDisplay.setText("");
+                    Log.i("Num One", Double.toString(numOne));
+                    Log.i("Num Two", Double.toString(numTwo));
                     break;
                 case R.id.calculator_multiply:
-                    if(numTmp!="") // If the numTmp value isn't empty (it must not be)
+                    operatorIs="multiply";
+                    if(numOne==0)
                     {
-                        operatorIs="times";
-                        if(numMain!="0")
-                        {
-                            Double calculation = Double.parseDouble(numMain) * Double.parseDouble(numTmp);
-                            String calculationStr = Double.toString(calculation);
-                            numMain = calculationStr;
-                        }
-                        else
-                        {
-                            Double calculation = Double.parseDouble(numTmp);
-                            String calculationStr = Double.toString(calculation);
-                            numMain = calculationStr;
-                        }
-                        numTmp="";
-
-                        calcDisplay.setText("");
+                        numOne += numTwo;
                     }
+                    else if(result!=0.0)
+                    {
+                        numOne=result;
+                    }
+                    else
+                    {
+                        numOne *= numTwo;
+                    }
+                    numTwo=0.0;
+                    calcDisplay.setText("");
+                    Log.i("Num One", Double.toString(numOne));
+                    Log.i("Num Two", Double.toString(numTwo));
                     break;
 
 
                 case R.id.calculator_equals:
-                    Double numOne = Double.parseDouble(numMain);
-                    Double numTwo = Double.parseDouble(numTmp);
-
                     if(operatorIs=="plus")
                     {
-                        Double result = numOne + numTwo;
+                        result = numOne+numTwo;
                         calcDisplay.setText(Double.toString(result));
+
+                        numOne=result;
+                        numTwo=0.0;
                     }
                     if(operatorIs=="minus")
                     {
-                        Double result = numOne - numTwo;
+                        result = numOne-numTwo;
                         calcDisplay.setText(Double.toString(result));
+
+                        numOne=result;
+
                     }
                     if(operatorIs=="divide")
                     {
-                        Double result = numOne / numTwo;
+                        result = numOne/numTwo;
                         calcDisplay.setText(Double.toString(result));
+
+                        numOne=result;
+
                     }
-                    if(operatorIs=="times")
+                    if(operatorIs=="multiply")
                     {
-                        Double result = numOne * numTwo;
+                        result = numOne*numTwo;
                         calcDisplay.setText(Double.toString(result));
+
+                        numOne=result;
+
                     }
-                    Log.i("Num one", Double.toString(numOne));
-                    Log.i("Num two", Double.toString(numTwo));
+                    Log.i("Result",Double.toString(result));
+                    break;
             }
         }
     }
