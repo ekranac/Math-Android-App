@@ -43,7 +43,7 @@ public class MainActivity extends Activity {
         mViewPager = (ViewPager) findViewById(R.id.pager);
         mViewPager.setAdapter(mSectionsPagerAdapter);
 
-        mViewPager.setCurrentItem(1); // Sets fragment with index 1 when index starts
+        mViewPager.setCurrentItem(1); // Sets fragment with index 1 when application starts
     }
 
 
@@ -164,6 +164,8 @@ public class MainActivity extends Activity {
 
             operatorIs="";
 
+
+
             calcDisplay = (TextView) rootView.findViewById(R.id.display_content);
             calcDisplay.setText("0");
 
@@ -229,7 +231,7 @@ public class MainActivity extends Activity {
         public void calcNumClick(int num)
         {
             String oldCalcDisplay = calcDisplay.getText().toString();
-            if(num!=0)
+            if(num!=0) // If you don't press 0
             {
                 if(oldCalcDisplay=="0")
                 {
@@ -241,7 +243,8 @@ public class MainActivity extends Activity {
 
                 numTwo = Double.parseDouble(newCalcDisplay);
             }
-            if(num==0)
+
+            if(num==0) // If you press 0
             {
                 if(oldCalcDisplay=="0")
                 {
@@ -262,7 +265,6 @@ public class MainActivity extends Activity {
         @Override
         public void onClick(View v)
         {
-
             switch(v.getId())
             {
                 case R.id.calculator_one:
@@ -306,6 +308,7 @@ public class MainActivity extends Activity {
                     break;
 
                 case R.id.calculator_clear:
+                    // Basically resets everything
                     calcDisplay.setText("0");
                     numOne=0.0;
                     numTwo=0.0;
@@ -314,7 +317,7 @@ public class MainActivity extends Activity {
 
                 case R.id.calculator_point:
                     String currentContent = calcDisplay.getText().toString();
-                    if(currentContent.contains("."))
+                    if(currentContent.contains(".")) // There obviously can't be two decimal points
                     {
                         calcDisplay.setText(currentContent);
                     }
