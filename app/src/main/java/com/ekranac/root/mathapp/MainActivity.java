@@ -164,8 +164,6 @@ public class MainActivity extends Activity {
 
             operatorIs="";
 
-
-
             calcDisplay = (TextView) rootView.findViewById(R.id.display_content);
             calcDisplay.setText("0");
 
@@ -313,6 +311,7 @@ public class MainActivity extends Activity {
                     numOne=0.0;
                     numTwo=0.0;
                     result=0.0;
+                    operatorIs="";
                     break;
 
                 case R.id.calculator_point:
@@ -335,72 +334,66 @@ public class MainActivity extends Activity {
 
                 // Operators
                 case R.id.calculator_add:
-                    operatorIs="plus";
-                    if(numOne==0)
+                    if(operatorIs!="plus")
                     {
-                        numOne += numTwo;
+
+
+                        operatorIs = "plus";
+                        if (numOne == 0) {
+                            numOne += numTwo;
+                        } else if (result != 0.0) {
+                            numOne = result;
+                        } else {
+                            numOne += numTwo;
+                        }
+                        numTwo = 0.0;
+
                     }
-                    else if(result!=0.0)
-                    {
-                        numOne=result;
-                    }
-                    else
-                    {
-                        numOne += numTwo;
-                    }
-                    numTwo=0.0;
-                    calcDisplay.setText("");
                     break;
                 case R.id.calculator_subtract:
-                    operatorIs="minus";
-                    if(numOne==0)
+                    if(operatorIs!="minus")
                     {
-                        numOne += numTwo;
+                        operatorIs = "minus";
+                        if (numOne == 0) {
+                            numOne += numTwo;
+                        } else if (result != 0.0) {
+                            numOne = result;
+                        } else {
+                            numOne -= numTwo;
+                        }
+                        numTwo = 0.0;
+                        calcDisplay.setText("");
                     }
-                    else if(result!=0.0)
-                    {
-                        numOne=result;
-                    }
-                    else
-                    {
-                        numOne -= numTwo;
-                    }
-                    numTwo=0.0;
-                    calcDisplay.setText("");
                     break;
                 case R.id.calculator_divide:
-                    operatorIs="divide";
-                    if(numOne==0)
+                    if(operatorIs!="divide")
                     {
-                        numOne += numTwo;
+                        operatorIs = "divide";
+                        if (numOne == 0) {
+                            numOne += numTwo;
+                        } else if (result != 0.0) {
+                            numOne = result;
+                        } else {
+                            numOne /= numTwo;
+                        }
+                        numTwo = 0.0;
+                        calcDisplay.setText("");
                     }
-                    else if(result!=0.0)
-                    {
-                        numOne=result;
-                    }
-                    else
-                    {
-                        numOne /= numTwo;
-                    }
-                    numTwo=0.0;
-                    calcDisplay.setText("");
                     break;
                 case R.id.calculator_multiply:
-                    operatorIs="multiply";
-                    if(numOne==0)
+                    if(operatorIs!="multiply")
                     {
-                        numOne += numTwo;
+                        operatorIs = "multiply";
+                        if (numOne == 0) {
+                            numOne += numTwo;
+                        } else if (result != 0.0) {
+                            numOne = result;
+                        } else {
+                            numOne *= numTwo;
+                        }
+                        numTwo = 0.0;
+                        calcDisplay.setText("");
                     }
-                    else if(result!=0.0)
-                    {
-                        numOne=result;
-                    }
-                    else
-                    {
-                        numOne *= numTwo;
-                    }
-                    numTwo=0.0;
-                    calcDisplay.setText("");
                     break;
 
 
