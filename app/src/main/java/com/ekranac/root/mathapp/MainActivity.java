@@ -1,5 +1,7 @@
 package com.ekranac.root.mathapp;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -400,7 +402,9 @@ public class MainActivity extends Activity {
                     if(operatorIs=="plus")
                     {
                         result = numOne+numTwo;
+
                         calcDisplay.setText(Double.toString(result));
+                        operatorIs="";
 
                         numOne=result;
                         numTwo=0.0;
@@ -409,6 +413,7 @@ public class MainActivity extends Activity {
                     {
                         result = numOne-numTwo;
                         calcDisplay.setText(Double.toString(result));
+                        operatorIs="";
 
                         numOne=result;
 
@@ -417,17 +422,17 @@ public class MainActivity extends Activity {
                     {
                         result = numOne/numTwo;
                         calcDisplay.setText(Double.toString(result));
+                        operatorIs="";
 
                         numOne=result;
-
                     }
                     if(operatorIs=="multiply")
                     {
                         result = numOne*numTwo;
                         calcDisplay.setText(Double.toString(result));
+                        operatorIs="";
 
                         numOne=result;
-
                     }
                     break;
             }
