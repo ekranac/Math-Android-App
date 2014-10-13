@@ -336,8 +336,6 @@ public class MainActivity extends Activity {
                 case R.id.calculator_add:
                     if(operatorIs!="plus")
                     {
-
-
                         operatorIs = "plus";
                         if (numOne == 0) {
                             numOne += numTwo;
@@ -347,6 +345,7 @@ public class MainActivity extends Activity {
                             numOne += numTwo;
                         }
                         numTwo = 0.0;
+                        calcDisplay.setText("");
 
                     }
                     break;

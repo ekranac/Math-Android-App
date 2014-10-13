@@ -31,13 +31,14 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/calculator_first_row"
-            android:layout_weight="1">
+            android:layout_weight="1"
+            android:weightSum="1.0">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="fill_parent"
                 android:text="C"
-                android:layout_weight="3"
+                android:layout_weight="0.77"
                 android:background="@color/cloud"
                 android:gravity="center"
                 android:id="@+id/calculator_clear"
@@ -48,7 +49,7 @@
                 android:text="÷"
                 android:background="#aabbcc"
                 android:textColor="@color/white"
-                android:layout_weight="1"
+                android:layout_weight="0.23"
                 android:gravity="center"
                 android:id="@+id/calculator_divide"
                 android:textSize="@dimen/calculatorKeyNumSize"/>
@@ -59,13 +60,14 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/calculator_second_row"
-            android:layout_weight="1">
+            android:layout_weight="1"
+            android:weightSum="1.0">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="fill_parent"
                 android:text="7"
-                android:layout_weight="1"
+                android:layout_weight="0.249"
                 android:gravity="center"
                 android:id="@+id/calculator_seven"
                 android:textSize="@dimen/calculatorKeyNumSize"/>
@@ -73,7 +75,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="fill_parent"
                 android:text="8"
-                android:layout_weight="1"
+                android:layout_weight="0.25"
                 android:gravity="center"
                 android:id="@+id/calculator_eight"
                 android:textSize="@dimen/calculatorKeyNumSize"/>
@@ -81,7 +83,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="fill_parent"
                 android:text="9"
-                android:layout_weight="1"
+                android:layout_weight="0.25"
                 android:gravity="center"
                 android:id="@+id/calculator_nine"
                 android:textSize="@dimen/calculatorKeyNumSize"/>
@@ -91,7 +93,7 @@
                 android:text="×"
                 android:background="#aabbcc"
                 android:textColor="@color/white"
-                android:layout_weight="1"
+                android:layout_weight="0.251"
                 android:gravity="center"
                 android:id="@+id/calculator_multiply"
                 android:textSize="@dimen/calculatorKeyNumSize"/>
@@ -103,13 +105,14 @@
             android:layout_height="wrap_content"
             android:id="@+id/calculator_third_row"
             android:layout_below="@id/calculator_first_row"
-            android:layout_weight="1">
+            android:layout_weight="1"
+            android:weightSum="1.0">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="fill_parent"
                 android:text="4"
-                android:layout_weight="1"
+                android:layout_weight="0.242"
                 android:gravity="center"
                 android:id="@+id/calculator_four"
                 android:textSize="@dimen/calculatorKeyNumSize"/>
@@ -117,7 +120,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="fill_parent"
                 android:text="5"
-                android:layout_weight="1"
+                android:layout_weight="0.25"
                 android:gravity="center"
                 android:id="@+id/calculator_five"
                 android:textSize="@dimen/calculatorKeyNumSize"/>
@@ -125,7 +128,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="fill_parent"
                 android:text="6"
-                android:layout_weight="1"
+                android:layout_weight="0.25"
                 android:gravity="center"
                 android:id="@+id/calculator_six"
                 android:textSize="@dimen/calculatorKeyNumSize"/>
@@ -135,7 +138,7 @@
                 android:text="-"
                 android:background="#aabbcc"
                 android:textColor="@color/white"
-                android:layout_weight="1"
+                android:layout_weight="0.258"
                 android:gravity="center"
                 android:id="@+id/calculator_subtract"
                 android:textSize="@dimen/calculatorKeyNumSize"/>
@@ -192,13 +195,14 @@
             android:layout_height="wrap_content"
             android:id="@+id/calculator_fifth_row"
             android:layout_below="@id/calculator_second_row"
-            android:layout_weight="1">
+            android:layout_weight="1"
+            android:weightSum="1.0">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="fill_parent"
                 android:text="0"
-                android:layout_weight="2"
+                android:layout_weight="0.517"
                 android:gravity="center"
                 android:id="@+id/calculator_zero"
                 android:textSize="@dimen/calculatorKeyNumSize"/>
@@ -206,7 +210,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="fill_parent"
                 android:text=","
-                android:layout_weight="1"
+                android:layout_weight="0.25"
                 android:gravity="center"
                 android:id="@+id/calculator_point"
                 android:textSize="@dimen/calculatorKeyNumSize"/>
@@ -216,7 +220,7 @@
                 android:text="="
                 android:background="#aabbcc"
                 android:textColor="@color/white"
-                android:layout_weight="1.01"
+                android:layout_weight="0.24"
                 android:gravity="center"
                 android:id="@+id/calculator_equals"
                 android:textSize="@dimen/calculatorKeyNumSize"/>
