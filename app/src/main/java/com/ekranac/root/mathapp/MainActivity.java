@@ -262,6 +262,7 @@ public class MainActivity extends Activity {
         }
 
 
+        // Calculator button press switch
         @Override
         public void onClick(View v)
         {
@@ -403,6 +404,14 @@ public class MainActivity extends Activity {
                     {
                         result = numOne+numTwo;
 
+                        if(result%1!=0)
+                        {
+                            BigDecimal bd = new BigDecimal(result);
+                            bd = bd.setScale(5, RoundingMode.HALF_UP);
+
+                            result = bd.doubleValue();
+                        }
+
                         calcDisplay.setText(Double.toString(result));
                         operatorIs="";
 
@@ -412,6 +421,15 @@ public class MainActivity extends Activity {
                     if(operatorIs=="minus")
                     {
                         result = numOne-numTwo;
+
+                        if(result%1!=0)
+                        {
+                            BigDecimal bd = new BigDecimal(result);
+                            bd = bd.setScale(5, RoundingMode.HALF_UP);
+
+                            result = bd.doubleValue();
+                        }
+
                         calcDisplay.setText(Double.toString(result));
                         operatorIs="";
 
@@ -421,6 +439,15 @@ public class MainActivity extends Activity {
                     if(operatorIs=="divide")
                     {
                         result = numOne/numTwo;
+
+                        if(result%1!=0)
+                        {
+                            BigDecimal bd = new BigDecimal(result);
+                            bd = bd.setScale(5, RoundingMode.HALF_UP);
+
+                            result = bd.doubleValue();
+                        }
+
                         calcDisplay.setText(Double.toString(result));
                         operatorIs="";
 
@@ -429,6 +456,15 @@ public class MainActivity extends Activity {
                     if(operatorIs=="multiply")
                     {
                         result = numOne*numTwo;
+
+                        if(result%1!=0)
+                        {
+                            BigDecimal bd = new BigDecimal(result);
+                            bd = bd.setScale(5, RoundingMode.HALF_UP);
+
+                            result = bd.doubleValue();
+                        }
+
                         calcDisplay.setText(Double.toString(result));
                         operatorIs="";
 
@@ -436,7 +472,7 @@ public class MainActivity extends Activity {
                     }
                     break;
             }
-        }
+        } // End switch
     }
 
 
