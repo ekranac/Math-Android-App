@@ -2,5 +2,5 @@
     <!-- Default screen margins, per the Android Design guidelines. -->
     <dimen name="calculatorDisplayNumSize">80sp</dimen>
     <dimen name="calculatorKeyMargin">1dp</dimen>
-    <dimen name="calculatorKeyNumSize">25sp</dimen>
+    <dimen name="calculatorKeyNumSize">30sp</dimen>
 </resources>
