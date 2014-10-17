@@ -65,7 +65,7 @@ public class MainActivity extends Activity {
                 case 1:
                     return new PlaceholderFragment();
                 case 2:
-                    return new CalculatorFragment();
+                    return new CaseFragment();
             }
             return null;
         }
@@ -475,5 +475,16 @@ public class MainActivity extends Activity {
         } // End switch
     }
 
+
+    public static class CaseFragment extends Fragment {
+        private static final String ARG_SECTION_NUMBER = "section_number";
+        @Override
+        public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                                 Bundle savedInstanceState) {
+            View rootView = inflater.inflate(R.layout.fragment_case, container, false);
+
+            return rootView;
+        }
+    }
 
 }

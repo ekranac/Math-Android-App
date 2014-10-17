@@ -24,7 +24,8 @@
             android:layout_height="fill_parent"
             android:textSize="@dimen/calculatorDisplayNumSize"
             android:id="@+id/display_content"
-            android:maxLength="8"/>
+            android:maxLength="8"
+            android:background="@color/white"/>
 
     </LinearLayout>
 

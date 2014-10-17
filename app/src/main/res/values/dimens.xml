@@ -3,4 +3,7 @@
     <dimen name="calculatorDisplayNumSize">80sp</dimen>
     <dimen name="calculatorKeyMargin">1dp</dimen>
     <dimen name="calculatorKeyNumSize">30sp</dimen>
+
+    <dimen name="caseTitle">60sp</dimen>
+    <dimen name="caseMargin">10dp</dimen>
 </resources>
