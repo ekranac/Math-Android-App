@@ -4,6 +4,8 @@
     <dimen name="calculatorKeyMargin">1dp</dimen>
     <dimen name="calculatorKeyNumSize">30sp</dimen>
 
+    <dimen name="listItemSize">21dp</dimen>
+
     <dimen name="caseTitle">60sp</dimen>
     <dimen name="caseMargin">10dp</dimen>
 </resources>
