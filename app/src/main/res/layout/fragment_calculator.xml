@@ -1,58 +1,53 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
-
-
-
     <LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
         android:id="@+id/calculator_keyboard">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/calculator_display_frame"
-        android:layout_weight="0.5"
-        android:orientation="horizontal">
-
-        <TextView
+        <LinearLayout
             android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
-            android:textSize="@dimen/calculatorDisplayNumSize"
-            android:id="@+id/display_content"
-            android:maxLength="8"
-            android:background="@color/white"/>
+            android:layout_height="wrap_content"
+            android:id="@+id/calculator_display_frame"
+            android:layout_weight="0.001"
+            android:orientation="vertical">
 
-    </LinearLayout>
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:textSize="@dimen/calculatorDisplayNumSize"
+                android:id="@+id/display_content"
+                android:maxLength="8"
+                android:background="@color/white"/>
+
+        </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/calculator_first_row"
-            android:layout_weight="1"
+            android:layout_weight="0.167"
             android:weightSum="1.0">
 
-            <TextView
-                android:layout_width="wrap_content"
+            <Button
+                android:layout_width="150dp"
                 android:layout_height="fill_parent"
                 android:text="C"
-                android:layout_weight="0.775"
-                android:background="@color/river"
+                android:layout_weight="0.75"
+                android:background="@color/belize"
                 android:gravity="center"
                 android:id="@+id/calculator_clear"
                 android:textSize="@dimen/calculatorKeyNumSize"
                 android:textColor="@color/white"/>
-            <TextView
-                android:layout_width="wrap_content"
+            <Button
+                android:layout_width="50dp"
                 android:layout_height="fill_parent"
                 android:text="÷"
                 android:background="@color/river"
                 android:textColor="@color/white"
-                android:layout_weight="0.229"
+                android:layout_weight="0.25"
                 android:gravity="center"
                 android:id="@+id/calculator_divide"
                 android:textSize="@dimen/calculatorKeyNumSize"/>
@@ -63,43 +58,46 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/calculator_second_row"
-            android:layout_weight="1"
+            android:layout_weight="0.167"
             android:weightSum="1.0">
 
-            <TextView
-                android:layout_width="wrap_content"
+            <Button
+                android:layout_width="50dp"
                 android:layout_height="fill_parent"
                 android:text="7"
-                android:layout_weight="0.249"
+                android:layout_weight="0.25"
                 android:gravity="center"
                 android:id="@+id/calculator_seven"
                 android:textSize="@dimen/calculatorKeyNumSize"
-                android:textColor="@color/river"/>
-            <TextView
-                android:layout_width="wrap_content"
+                android:textColor="@color/river"
+                android:background="@color/white"/>
+            <Button
+                android:layout_width="50dp"
                 android:layout_height="fill_parent"
                 android:text="8"
                 android:layout_weight="0.25"
                 android:gravity="center"
                 android:id="@+id/calculator_eight"
                 android:textSize="@dimen/calculatorKeyNumSize"
-                android:textColor="@color/river"/>
-            <TextView
-                android:layout_width="wrap_content"
+                android:textColor="@color/river"
+                android:background="@color/white"/>
+            <Button
+                android:layout_width="50dp"
                 android:layout_height="fill_parent"
                 android:text="9"
                 android:layout_weight="0.25"
                 android:gravity="center"
                 android:id="@+id/calculator_nine"
                 android:textSize="@dimen/calculatorKeyNumSize"
-                android:textColor="@color/river"/>
-            <TextView
-                android:layout_width="wrap_content"
+                android:textColor="@color/river"
+                android:background="@color/white"/>
+            <Button
+                android:layout_width="50dp"
                 android:layout_height="fill_parent"
                 android:text="×"
                 android:background="@color/river"
                 android:textColor="@color/white"
-                android:layout_weight="0.251"
+                android:layout_weight="0.25"
                 android:gravity="center"
                 android:id="@+id/calculator_multiply"
                 android:textSize="@dimen/calculatorKeyNumSize"/>
@@ -111,43 +109,46 @@
             android:layout_height="wrap_content"
             android:id="@+id/calculator_third_row"
             android:layout_below="@id/calculator_first_row"
-            android:layout_weight="1"
+            android:layout_weight="0.167"
             android:weightSum="1.0">
 
-            <TextView
-                android:layout_width="wrap_content"
+            <Button
+                android:layout_width="50dp"
                 android:layout_height="fill_parent"
                 android:text="4"
-                android:layout_weight="0.242"
+                android:layout_weight="0.25"
                 android:gravity="center"
                 android:id="@+id/calculator_four"
                 android:textSize="@dimen/calculatorKeyNumSize"
-                android:textColor="@color/river"/>
-            <TextView
-                android:layout_width="wrap_content"
+                android:textColor="@color/river"
+                android:background="@color/white"/>
+            <Button
+                android:layout_width="50dp"
                 android:layout_height="fill_parent"
                 android:text="5"
                 android:layout_weight="0.25"
                 android:gravity="center"
                 android:id="@+id/calculator_five"
                 android:textSize="@dimen/calculatorKeyNumSize"
-                android:textColor="@color/river"/>
-            <TextView
-                android:layout_width="wrap_content"
+                android:textColor="@color/river"
+                android:background="@color/white"/>
+            <Button
+                android:layout_width="50dp"
                 android:layout_height="fill_parent"
                 android:text="6"
-                android:layout_weight="0.249"
+                android:layout_weight="0.25"
                 android:gravity="center"
                 android:id="@+id/calculator_six"
                 android:textSize="@dimen/calculatorKeyNumSize"
-                android:textColor="@color/river"/>
-            <TextView
-                android:layout_width="wrap_content"
+                android:textColor="@color/river"
+                android:background="@color/white"/>
+            <Button
+                android:layout_width="50dp"
                 android:layout_height="fill_parent"
                 android:text="-"
                 android:background="@color/river"
                 android:textColor="@color/white"
-                android:layout_weight="0.27"
+                android:layout_weight="0.25"
                 android:gravity="center"
                 android:id="@+id/calculator_subtract"
                 android:textSize="@dimen/calculatorKeyNumSize"/>
@@ -159,43 +160,47 @@
             android:layout_height="wrap_content"
             android:id="@+id/calculator_fourth_row"
             android:layout_below="@id/calculator_second_row"
-            android:layout_weight="1">
+            android:layout_weight="0.167"
+            android:weightSum="1.0">
 
-            <TextView
-                android:layout_width="wrap_content"
+            <Button
+                android:layout_width="50dp"
                 android:layout_height="fill_parent"
                 android:text="1"
-                android:layout_weight="1"
+                android:layout_weight="0.25"
                 android:gravity="center"
                 android:id="@+id/calculator_one"
                 android:textSize="@dimen/calculatorKeyNumSize"
-                android:textColor="@color/river"/>
-            <TextView
-                android:layout_width="wrap_content"
+                android:textColor="@color/river"
+                android:background="@color/white"/>
+            <Button
+                android:layout_width="50dp"
                 android:layout_height="fill_parent"
                 android:text="2"
-                android:layout_weight="1"
+                android:layout_weight="0.25"
                 android:gravity="center"
                 android:id="@+id/calculator_two"
                 android:textSize="@dimen/calculatorKeyNumSize"
-                android:textColor="@color/river"/>
-            <TextView
-                android:layout_width="wrap_content"
+                android:textColor="@color/river"
+                android:background="@color/white"/>
+            <Button
+                android:layout_width="50dp"
                 android:layout_height="fill_parent"
                 android:text="3"
-                android:layout_weight="1"
+                android:layout_weight="0.25"
                 android:gravity="center"
                 android:id="@+id/calculator_three"
                 android:textSize="@dimen/calculatorKeyNumSize"
-                android:textColor="@color/river"/>
+                android:textColor="@color/river"
+                android:background="@color/white"/>
 
-            <TextView
-                android:layout_width="wrap_content"
+            <Button
+                android:layout_width="50dp"
                 android:layout_height="fill_parent"
                 android:text="+"
                 android:background="@color/river"
                 android:textColor="@color/white"
-                android:layout_weight="1"
+                android:layout_weight="0.25"
                 android:gravity="center"
                 android:id="@+id/calculator_add"
                 android:textSize="@dimen/calculatorKeyNumSize"/>
@@ -207,34 +212,37 @@
             android:layout_height="wrap_content"
             android:id="@+id/calculator_fifth_row"
             android:layout_below="@id/calculator_second_row"
-            android:layout_weight="1"
+            android:layout_weight="0.167"
             android:weightSum="1.0">
 
-            <TextView
-                android:layout_width="wrap_content"
+            <Button
+                android:layout_width="100dp"
                 android:layout_height="fill_parent"
                 android:text="0"
-                android:layout_weight="0.52"
+                android:layout_weight="0.50"
                 android:gravity="center"
                 android:id="@+id/calculator_zero"
                 android:textSize="@dimen/calculatorKeyNumSize"
-                android:textColor="@color/river"/>
-            <TextView
-                android:layout_width="wrap_content"
+                android:textColor="@color/river"
+                android:background="@color/white"
+                />
+            <Button
+                android:layout_width="50dp"
                 android:layout_height="fill_parent"
                 android:text=","
                 android:layout_weight="0.25"
                 android:gravity="center"
                 android:id="@+id/calculator_point"
                 android:textSize="@dimen/calculatorKeyNumSize"
-                android:textColor="@color/river"/>
-            <TextView
-                android:layout_width="wrap_content"
+                android:textColor="@color/river"
+                android:background="@color/white"/>
+            <Button
+                android:layout_width="50dp"
                 android:layout_height="fill_parent"
                 android:text="="
                 android:background="@color/river"
                 android:textColor="@color/white"
-                android:layout_weight="0.23"
+                android:layout_weight="0.25"
                 android:gravity="center"
                 android:id="@+id/calculator_equals"
                 android:textSize="@dimen/calculatorKeyNumSize"/>
@@ -242,5 +250,3 @@
         </LinearLayout>
 
     </LinearLayout>
-
-</RelativeLayout>
