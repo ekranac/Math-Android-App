@@ -160,12 +160,7 @@ public class MainActivity extends Activity {
             listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
                 public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                    String item = (String) adapterView.getItemAtPosition(i);
-                    String value = item.toString();
-
-                    ((TextView)view).setText("Yolo");
-
-                    Log.i("Item", value);
+                    ((TextView)view).setText("Hey!");
                 }
             });
 
