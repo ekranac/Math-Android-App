@@ -367,35 +367,48 @@ public class MainActivity extends Activity {
 
                 // Operators
                 case R.id.calculator_add:
-                    operatorIs="plus";
-                    if(numOne==0)
+                    if(numTwo!=0.0)
                     {
-                        numOne += numTwo;
+                        operatorIs = "plus";
+                        if (numOne == 0)
+                        {
+                            numOne += numTwo;
+                        }
+                        else if (result != 0.0)
+                        {
+                            numOne = result;
+                        }
+                        else
+                        {
+                            numOne += numTwo;
+                        }
+                        numTwo = 0.0;
+                        calcDisplay.setText("");
                     }
-                    else if(result!=0.0)
-                    {
-                        numOne=result;
-                    }
-                    else
-                    {
-                        numOne += numTwo;
-                    }
-                    numTwo=0.0;
-                    calcDisplay.setText("");
                     break;
                 case R.id.calculator_subtract:
+                    if(numTwo!=0.0)
+                    {
                         operatorIs = "minus";
-                        if (numOne == 0) {
+                        if (numOne == 0)
+                        {
                             numOne += numTwo;
-                        } else if (result != 0.0) {
+                        }
+                        else if (result != 0.0)
+                        {
                             numOne = result;
-                        } else {
+                        }
+                        else
+                        {
                             numOne -= numTwo;
                         }
                         numTwo = 0.0;
                         calcDisplay.setText("");
-                        break;
+                    }
+                    break;
                 case R.id.calculator_divide:
+                    if(numTwo!=0.0)
+                    {
                         operatorIs = "divide";
                         if (numOne == 0) {
                             numOne += numTwo;
@@ -406,8 +419,11 @@ public class MainActivity extends Activity {
                         }
                         numTwo = 0.0;
                         calcDisplay.setText("");
-                        break;
+                    }
+                    break;
                 case R.id.calculator_multiply:
+                    if(numTwo!=0.0)
+                    {
                         operatorIs = "multiply";
                         if (numOne == 0) {
                             numOne += numTwo;
@@ -418,7 +434,8 @@ public class MainActivity extends Activity {
                         }
                         numTwo = 0.0;
                         calcDisplay.setText("");
-                        break;
+                    }
+                    break;
 
 
                 case R.id.calculator_equals:
