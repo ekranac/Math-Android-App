@@ -15,12 +15,16 @@ import android.os.Bundle;
 import android.support.v4.view.ViewPager;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
+import android.widget.Adapter;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
+
 
 
 
@@ -133,7 +137,7 @@ public class MainActivity extends Activity {
                     };
 
             // Transforms raw data from Array to ArrayList so it can be implemented to adapter later
-            List<String> weekForecast = new ArrayList<String>(Arrays.asList(forecastArray));
+            List<String> arrayList = new ArrayList<String>(Arrays.asList(forecastArray));
 
 
             // Adapter set
@@ -145,12 +149,25 @@ public class MainActivity extends Activity {
                     // ID of the TextView to populate
                     R.id.list_item_textview,
                     // ArrayList data
-                    weekForecast
+                    arrayList
             );
 
 
             ListView listView = (ListView) rootView.findViewById(R.id.listview_main);
             listView.setAdapter(mAdapter);
+
+
+            listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                    String item = (String) adapterView.getItemAtPosition(i);
+                    String value = item.toString();
+
+                    ((TextView)view).setText("Yolo motherfucker");
+
+                    Log.i("Item", value);
+                }
+            });
 
             return rootView;
         }
