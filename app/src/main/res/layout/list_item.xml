@@ -10,4 +10,5 @@
     android:textColor="@color/river"
     android:textSize="@dimen/listItemSize"
     android:paddingLeft="10dp"
-    android:text="Hello World"/>
+    android:text="Hello World"
+    android:clickable="true"/>

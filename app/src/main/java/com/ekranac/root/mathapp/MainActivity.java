@@ -163,7 +163,7 @@ public class MainActivity extends Activity {
                     String item = (String) adapterView.getItemAtPosition(i);
                     String value = item.toString();
 
-                    ((TextView)view).setText("Yolo motherfucker");
+                    ((TextView)view).setText("Yolo");
 
                     Log.i("Item", value);
                 }
@@ -191,6 +191,8 @@ public class MainActivity extends Activity {
 
             numOne=0.0;
             numTwo=0.0;
+
+            result=0.0;
 
             operatorIs="";
 
@@ -365,24 +367,23 @@ public class MainActivity extends Activity {
 
                 // Operators
                 case R.id.calculator_add:
-                    if(operatorIs!="plus")
+                    operatorIs="plus";
+                    if(numOne==0)
                     {
-                        operatorIs = "plus";
-                        if (numOne == 0) {
-                            numOne += numTwo;
-                        } else if (result != 0.0) {
-                            numOne = result;
-                        } else {
-                            numOne += numTwo;
-                        }
-                        numTwo = 0.0;
-                        calcDisplay.setText("");
-
+                        numOne += numTwo;
                     }
+                    else if(result!=0.0)
+                    {
+                        numOne=result;
+                    }
+                    else
+                    {
+                        numOne += numTwo;
+                    }
+                    numTwo=0.0;
+                    calcDisplay.setText("");
                     break;
                 case R.id.calculator_subtract:
-                    if(operatorIs!="minus")
-                    {
                         operatorIs = "minus";
                         if (numOne == 0) {
                             numOne += numTwo;
@@ -393,11 +394,8 @@ public class MainActivity extends Activity {
                         }
                         numTwo = 0.0;
                         calcDisplay.setText("");
-                    }
-                    break;
+                        break;
                 case R.id.calculator_divide:
-                    if(operatorIs!="divide")
-                    {
                         operatorIs = "divide";
                         if (numOne == 0) {
                             numOne += numTwo;
@@ -408,11 +406,8 @@ public class MainActivity extends Activity {
                         }
                         numTwo = 0.0;
                         calcDisplay.setText("");
-                    }
-                    break;
+                        break;
                 case R.id.calculator_multiply:
-                    if(operatorIs!="multiply")
-                    {
                         operatorIs = "multiply";
                         if (numOne == 0) {
                             numOne += numTwo;
@@ -423,8 +418,7 @@ public class MainActivity extends Activity {
                         }
                         numTwo = 0.0;
                         calcDisplay.setText("");
-                    }
-                    break;
+                        break;
 
 
                 case R.id.calculator_equals:
