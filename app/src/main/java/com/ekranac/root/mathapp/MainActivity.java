@@ -2,6 +2,7 @@ package com.ekranac.root.mathapp;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -19,6 +20,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
+import android.view.animation.AnimationUtils;
 import android.widget.Adapter;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -160,7 +162,18 @@ public class MainActivity extends Activity {
             listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
                 public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                    ((TextView)view).setText("Hey!");
+                    if(((TextView)view).getText().toString()=="Burek")
+                    {
+                        ((TextView)view).startAnimation(AnimationUtils.loadAnimation(getActivity(), android.R.anim.fade_out));
+                        ((TextView)view).setText("Hey!");
+                        ((TextView)view).startAnimation(AnimationUtils.loadAnimation(getActivity(), android.R.anim.fade_in));
+                    }
+                    else
+                    {
+                        ((TextView)view).startAnimation(AnimationUtils.loadAnimation(getActivity(), android.R.anim.fade_out));
+                        ((TextView)view).setText("Burek");
+                        ((TextView)view).startAnimation(AnimationUtils.loadAnimation(getActivity(), android.R.anim.fade_in));
+                    }
                 }
             });
 
@@ -176,6 +189,7 @@ public class MainActivity extends Activity {
         TextView calcPlus, calcMinus, calcDivide, calcTimes;
         String operatorIs;
         Double numOne, numTwo, result;
+        Boolean operatorPlus, operatorMinus, operatorDivide, operatorTimes;
 
 
 
@@ -188,6 +202,13 @@ public class MainActivity extends Activity {
             numTwo=0.0;
 
             result=0.0;
+
+
+            operatorPlus=false;
+            operatorDivide=false;
+            operatorTimes=false;
+            operatorMinus=false;
+
 
             operatorIs="";
 
@@ -289,6 +310,10 @@ public class MainActivity extends Activity {
         }
 
 
+        private static String removeTrailingZeros(double d) {
+            return String.valueOf(d).replaceAll("[0]*$", "").replaceAll(".$", "");
+        }
+
         // Calculator button press switch
         @Override
         public void onClick(View v)
@@ -337,6 +362,14 @@ public class MainActivity extends Activity {
 
                 case R.id.calculator_clear:
                     // Basically resets everything
+
+
+                    operatorPlus=false;
+                    operatorDivide=false;
+                    operatorTimes=false;
+                    operatorMinus=false;
+
+
                     calcOldDisplay.setText("");
                     calcDisplay.setText("0");
                     numOne=0.0;
@@ -365,8 +398,14 @@ public class MainActivity extends Activity {
 
                 // Operators
                 case R.id.calculator_add:
-                    if(numTwo!=0.0)
+                    if(!operatorPlus)
                     {
+                        operatorPlus=true;
+                        operatorDivide=false;
+                        operatorTimes=false;
+                        operatorMinus=false;
+
+
                         operatorIs = "plus";
                         if (numOne == 0)
                         {
@@ -381,13 +420,27 @@ public class MainActivity extends Activity {
                             numOne += numTwo;
                         }
                         numTwo = 0.0;
-                        calcOldDisplay.setText(Double.toString(numOne) + "+");
+
+                        if(numOne%1==0)
+                        {
+                            String newNum = removeTrailingZeros(numOne);
+                            calcOldDisplay.setText(newNum);
+                        }
+                        else
+                        {
+                            calcOldDisplay.setText(Double.toString(numOne) + "+");
+                        }
                         calcDisplay.setText("");
                     }
                     break;
                 case R.id.calculator_subtract:
-                    if(numTwo!=0.0)
+                    if(!operatorMinus)
                     {
+                        operatorPlus=false;
+                        operatorDivide=false;
+                        operatorTimes=false;
+                        operatorMinus=true;
+
                         operatorIs = "minus";
                         if (numOne == 0)
                         {
@@ -402,13 +455,28 @@ public class MainActivity extends Activity {
                             numOne -= numTwo;
                         }
                         numTwo = 0.0;
-                        calcOldDisplay.setText(Double.toString(numOne) + "-");
+
+                        if(numOne%1==0)
+                        {
+                            String newNum = removeTrailingZeros(numOne);
+                            calcOldDisplay.setText(newNum);
+                        }
+                        else
+                        {
+                            calcOldDisplay.setText(Double.toString(numOne) + "-");
+                        }
+
                         calcDisplay.setText("");
                     }
                     break;
                 case R.id.calculator_divide:
-                    if(numTwo!=0.0)
+                    if(!operatorDivide)
                     {
+                        operatorPlus=false;
+                        operatorDivide=true;
+                        operatorTimes=false;
+                        operatorMinus=false;
+
                         operatorIs = "divide";
                         if (numOne == 0) {
                             numOne += numTwo;
@@ -418,13 +486,29 @@ public class MainActivity extends Activity {
                             numOne /= numTwo;
                         }
                         numTwo = 0.0;
-                        calcOldDisplay.setText(Double.toString(numOne) + "×");
+
+                        if(numOne%1==0)
+                        {
+                            String newNum = removeTrailingZeros(numOne);
+                            calcOldDisplay.setText(newNum);
+                        }
+                        else
+                        {
+                            calcOldDisplay.setText(Double.toString(numOne) + "÷");
+                        }
+
+
                         calcDisplay.setText("");
                     }
                     break;
                 case R.id.calculator_multiply:
-                    if(numTwo!=0.0)
+                    if(!operatorTimes)
                     {
+                        operatorPlus=false;
+                        operatorDivide=false;
+                        operatorTimes=true;
+                        operatorMinus=false;
+
                         operatorIs = "multiply";
                         if (numOne == 0) {
                             numOne += numTwo;
@@ -434,13 +518,31 @@ public class MainActivity extends Activity {
                             numOne *= numTwo;
                         }
                         numTwo = 0.0;
-                        calcOldDisplay.setText(Double.toString(numOne) + "×");
+
+                        if(numOne%1==0)
+                        {
+                            String newNum = removeTrailingZeros(numOne);
+                            calcOldDisplay.setText(newNum);
+                        }
+                        else
+                        {
+                            calcOldDisplay.setText(Double.toString(numOne) + "×");
+                        }
+
+
                         calcDisplay.setText("");
                     }
                     break;
 
 
                 case R.id.calculator_equals:
+
+                    operatorPlus=false;
+                    operatorDivide=false;
+                    operatorTimes=false;
+                    operatorMinus=false;
+
+
                     if(operatorIs=="plus")
                     {
                         result = numOne+numTwo;
@@ -448,12 +550,20 @@ public class MainActivity extends Activity {
                         if(result%1!=0)
                         {
                             BigDecimal bd = new BigDecimal(result);
-                            bd = bd.setScale(5, RoundingMode.HALF_UP);
+                            bd = bd.setScale(3, RoundingMode.HALF_UP);
 
                             result = bd.doubleValue();
+
+                            calcDisplay.setText(Double.toString(result));
+
+                        }
+                        else if(result%1==0)
+                        {
+                            String calcResult = removeTrailingZeros(result);
+                            calcDisplay.setText(calcResult);
                         }
 
-                        calcDisplay.setText(Double.toString(result));
+
                         calcOldDisplay.setText("");
                         operatorIs="";
 
@@ -467,12 +577,19 @@ public class MainActivity extends Activity {
                         if(result%1!=0)
                         {
                             BigDecimal bd = new BigDecimal(result);
-                            bd = bd.setScale(5, RoundingMode.HALF_UP);
+                            bd = bd.setScale(3, RoundingMode.HALF_UP);
 
                             result = bd.doubleValue();
+
+                            calcDisplay.setText(Double.toString(result));
+
+                        }
+                        else if(result%1==0)
+                        {
+                            String calcResult = removeTrailingZeros(result);
+                            calcDisplay.setText(calcResult);
                         }
 
-                        calcDisplay.setText(Double.toString(result));
                         calcOldDisplay.setText("");
                         operatorIs="";
 
@@ -486,12 +603,19 @@ public class MainActivity extends Activity {
                         if(result%1!=0)
                         {
                             BigDecimal bd = new BigDecimal(result);
-                            bd = bd.setScale(5, RoundingMode.HALF_UP);
+                            bd = bd.setScale(3, RoundingMode.HALF_UP);
 
                             result = bd.doubleValue();
+
+                            calcDisplay.setText(Double.toString(result));
+
+                        }
+                        else if(result%1==0)
+                        {
+                            String calcResult = removeTrailingZeros(result);
+                            calcDisplay.setText(calcResult);
                         }
 
-                        calcDisplay.setText(Double.toString(result));
                         calcOldDisplay.setText("");
                         operatorIs="";
 
@@ -504,12 +628,19 @@ public class MainActivity extends Activity {
                         if(result%1!=0)
                         {
                             BigDecimal bd = new BigDecimal(result);
-                            bd = bd.setScale(5, RoundingMode.HALF_UP);
+                            bd = bd.setScale(3, RoundingMode.HALF_UP);
 
                             result = bd.doubleValue();
+
+                            calcDisplay.setText(Double.toString(result));
+
+                        }
+                        else if(result%1==0)
+                        {
+                            String calcResult = removeTrailingZeros(result);
+                            calcDisplay.setText(calcResult);
                         }
 
-                        calcDisplay.setText(Double.toString(result));
                         calcOldDisplay.setText("");
                         operatorIs="";
 

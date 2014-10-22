@@ -33,7 +33,7 @@
                 android:background="@color/white"
                 android:gravity="bottom|left"
                 android:scrollHorizontally="true"
-                android:ellipsize="start"
+                android:ellipsize="marquee"
                 android:singleLine="true"/>
 
         </LinearLayout>
