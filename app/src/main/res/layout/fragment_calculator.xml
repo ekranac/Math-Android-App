@@ -11,16 +11,30 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:id="@+id/calculator_display_frame"
-            android:layout_weight="0.001"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:weightSum="1.0">
 
             <TextView
                 android:layout_width="fill_parent"
-                android:layout_height="fill_parent"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/calculatorOldDisplayNumSize"
+                android:id="@+id/display_old_content"
+                android:background="@color/white"
+                android:gravity="top|left"
+                android:layout_weight="0.10"
+                android:textColor="@color/darkcloud"/>
+
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom|right"
                 android:textSize="@dimen/calculatorDisplayNumSize"
                 android:id="@+id/display_content"
-                android:maxLength="8"
-                android:background="@color/white"/>
+                android:background="@color/white"
+                android:gravity="bottom|left"
+                android:scrollHorizontally="true"
+                android:ellipsize="start"
+                android:singleLine="true"/>
 
         </LinearLayout>
 

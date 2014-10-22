@@ -172,7 +172,7 @@ public class MainActivity extends Activity {
 
     public static class CalculatorFragment extends Fragment implements View.OnClickListener {
         TextView calcZero,calcOne,calcTwo,calcThree,calcFour,calcFive,calcSix,calcSeven,calcEight,calcNine,
-                 calcClear, calcDisplay, calcPoint, calcEquals;
+                 calcClear, calcDisplay, calcOldDisplay, calcPoint, calcEquals;
         TextView calcPlus, calcMinus, calcDivide, calcTimes;
         String operatorIs;
         Double numOne, numTwo, result;
@@ -193,6 +193,8 @@ public class MainActivity extends Activity {
 
             calcDisplay = (TextView) rootView.findViewById(R.id.display_content);
             calcDisplay.setText("0");
+
+            calcOldDisplay = (TextView) rootView.findViewById(R.id.display_old_content);
 
             calcOne = (TextView) rootView.findViewById(R.id.calculator_one);
             calcOne.setOnClickListener(this);
@@ -335,6 +337,7 @@ public class MainActivity extends Activity {
 
                 case R.id.calculator_clear:
                     // Basically resets everything
+                    calcOldDisplay.setText("");
                     calcDisplay.setText("0");
                     numOne=0.0;
                     numTwo=0.0;
@@ -378,6 +381,7 @@ public class MainActivity extends Activity {
                             numOne += numTwo;
                         }
                         numTwo = 0.0;
+                        calcOldDisplay.setText(Double.toString(numOne) + "+");
                         calcDisplay.setText("");
                     }
                     break;
@@ -398,6 +402,7 @@ public class MainActivity extends Activity {
                             numOne -= numTwo;
                         }
                         numTwo = 0.0;
+                        calcOldDisplay.setText(Double.toString(numOne) + "-");
                         calcDisplay.setText("");
                     }
                     break;
@@ -413,6 +418,7 @@ public class MainActivity extends Activity {
                             numOne /= numTwo;
                         }
                         numTwo = 0.0;
+                        calcOldDisplay.setText(Double.toString(numOne) + "×");
                         calcDisplay.setText("");
                     }
                     break;
@@ -428,6 +434,7 @@ public class MainActivity extends Activity {
                             numOne *= numTwo;
                         }
                         numTwo = 0.0;
+                        calcOldDisplay.setText(Double.toString(numOne) + "×");
                         calcDisplay.setText("");
                     }
                     break;
@@ -447,6 +454,7 @@ public class MainActivity extends Activity {
                         }
 
                         calcDisplay.setText(Double.toString(result));
+                        calcOldDisplay.setText("");
                         operatorIs="";
 
                         numOne=result;
@@ -465,6 +473,7 @@ public class MainActivity extends Activity {
                         }
 
                         calcDisplay.setText(Double.toString(result));
+                        calcOldDisplay.setText("");
                         operatorIs="";
 
                         numOne=result;
@@ -483,6 +492,7 @@ public class MainActivity extends Activity {
                         }
 
                         calcDisplay.setText(Double.toString(result));
+                        calcOldDisplay.setText("");
                         operatorIs="";
 
                         numOne=result;
@@ -500,6 +510,7 @@ public class MainActivity extends Activity {
                         }
 
                         calcDisplay.setText(Double.toString(result));
+                        calcOldDisplay.setText("");
                         operatorIs="";
 
                         numOne=result;

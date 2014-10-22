@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="cloud">#ECF0F1</color>
+    <color name="darkcloud">#D4D8D9</color>
     <color name="white">#FFFFFF</color>
     <color name="abc">#aabbcc</color>
     <color name="turquoise">#1abc9c</color>
