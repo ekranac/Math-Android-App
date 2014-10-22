@@ -278,6 +278,13 @@ public class MainActivity extends Activity {
         // When calculator numbers are pressed
         public void calcNumClick(int num)
         {
+
+            operatorPlus=false;
+            operatorDivide=false;
+            operatorTimes=false;
+            operatorMinus=false;
+
+
             String oldCalcDisplay = calcDisplay.getText().toString();
             if(num!=0) // If you don't press 0
             {
@@ -424,7 +431,7 @@ public class MainActivity extends Activity {
                         if(numOne%1==0)
                         {
                             String newNum = removeTrailingZeros(numOne);
-                            calcOldDisplay.setText(newNum);
+                            calcOldDisplay.setText(newNum + "+");
                         }
                         else
                         {
@@ -459,7 +466,7 @@ public class MainActivity extends Activity {
                         if(numOne%1==0)
                         {
                             String newNum = removeTrailingZeros(numOne);
-                            calcOldDisplay.setText(newNum);
+                            calcOldDisplay.setText(newNum + "-");
                         }
                         else
                         {
@@ -490,7 +497,7 @@ public class MainActivity extends Activity {
                         if(numOne%1==0)
                         {
                             String newNum = removeTrailingZeros(numOne);
-                            calcOldDisplay.setText(newNum);
+                            calcOldDisplay.setText(newNum + "÷");
                         }
                         else
                         {
@@ -522,7 +529,7 @@ public class MainActivity extends Activity {
                         if(numOne%1==0)
                         {
                             String newNum = removeTrailingZeros(numOne);
-                            calcOldDisplay.setText(newNum);
+                            calcOldDisplay.setText(newNum + "×");
                         }
                         else
                         {
