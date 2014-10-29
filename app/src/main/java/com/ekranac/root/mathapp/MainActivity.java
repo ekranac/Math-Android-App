@@ -1,5 +1,6 @@
 package com.ekranac.root.mathapp;
 
+import java.lang.reflect.Array;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.text.DecimalFormat;
@@ -7,6 +8,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Locale;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import android.app.Activity;
 import android.app.Fragment;
@@ -24,10 +27,11 @@ import android.view.animation.AnimationUtils;
 import android.widget.Adapter;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
-
-
+import org.xml.sax.Parser;
 
 
 public class MainActivity extends Activity {
@@ -64,8 +68,7 @@ public class MainActivity extends Activity {
         // Switch between fragments based on positon
         @Override
         public Fragment getItem(int position) {
-            switch(position)
-            {
+            switch (position) {
                 case 0:
                     return new CalculatorFragment();
                 case 1:
@@ -99,9 +102,6 @@ public class MainActivity extends Activity {
         }
     }
 
-
-
-
     public static class PlaceholderFragment extends Fragment {
         private static final String ARG_SECTION_NUMBER = "section_number";
 
@@ -110,11 +110,11 @@ public class MainActivity extends Activity {
 
         @Override
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                Bundle savedInstanceState) {
+                                 Bundle savedInstanceState) {
             View rootView = inflater.inflate(R.layout.fragment_main, container, false);
 
             // Raw data
-            String[] forecastArray=
+            String[] forecastArray =
                     {
                             "Burek",
                             "Burek",
@@ -162,17 +162,14 @@ public class MainActivity extends Activity {
             listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
                 public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                    if(((TextView)view).getText().toString()=="Burek")
-                    {
-                        ((TextView)view).startAnimation(AnimationUtils.loadAnimation(getActivity(), android.R.anim.fade_out));
-                        ((TextView)view).setText("Hey!");
-                        ((TextView)view).startAnimation(AnimationUtils.loadAnimation(getActivity(), android.R.anim.fade_in));
-                    }
-                    else
-                    {
-                        ((TextView)view).startAnimation(AnimationUtils.loadAnimation(getActivity(), android.R.anim.fade_out));
-                        ((TextView)view).setText("Burek");
-                        ((TextView)view).startAnimation(AnimationUtils.loadAnimation(getActivity(), android.R.anim.fade_in));
+                    if (((TextView) view).getText().toString() == "Burek") {
+                        ((TextView) view).startAnimation(AnimationUtils.loadAnimation(getActivity(), android.R.anim.fade_out));
+                        ((TextView) view).setText("Hey!");
+                        ((TextView) view).startAnimation(AnimationUtils.loadAnimation(getActivity(), android.R.anim.fade_in));
+                    } else {
+                        ((TextView) view).startAnimation(AnimationUtils.loadAnimation(getActivity(), android.R.anim.fade_out));
+                        ((TextView) view).setText("Burek");
+                        ((TextView) view).startAnimation(AnimationUtils.loadAnimation(getActivity(), android.R.anim.fade_in));
                     }
                 }
             });
@@ -183,480 +180,251 @@ public class MainActivity extends Activity {
     }
 
 
-    public static class CalculatorFragment extends Fragment implements View.OnClickListener {
-        TextView calcZero,calcOne,calcTwo,calcThree,calcFour,calcFive,calcSix,calcSeven,calcEight,calcNine,
-                 calcClear, calcDisplay, calcOldDisplay, calcPoint, calcEquals;
-        TextView calcPlus, calcMinus, calcDivide, calcTimes;
-        String operatorIs;
-        Double numOne, numTwo, result;
-        Boolean operatorPlus, operatorMinus, operatorDivide, operatorTimes;
-
-
+    public static class CalculatorFragment extends Fragment implements View.OnClickListener{
 
         @Override
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
                                  Bundle savedInstanceState) {
+            Button calcZero, calcOne, calcTwo, calcThree, calcFour, calcFive, calcSix, calcSeven, calcEight, calcNine,
+                    calcClear, calcPoint, calcPlus, calcMinus, calcTimes, calcDivide, calcEquals;
+            EditText calcDisplay, oldCalcDisplay;
+
+
+
             View rootView = inflater.inflate(R.layout.fragment_calculator, container, false);
 
-            numOne=0.0;
-            numTwo=0.0;
 
-            result=0.0;
-
-
-            operatorPlus=false;
-            operatorDivide=false;
-            operatorTimes=false;
-            operatorMinus=false;
-
-
-            operatorIs="";
-
-            calcDisplay = (TextView) rootView.findViewById(R.id.display_content);
+            calcDisplay = (EditText) rootView.findViewById(R.id.display_content);
             calcDisplay.setText("0");
 
-            calcOldDisplay = (TextView) rootView.findViewById(R.id.display_old_content);
+            oldCalcDisplay = (EditText) rootView.findViewById(R.id.display_old_content);
+            oldCalcDisplay.setText("");
 
-            calcOne = (TextView) rootView.findViewById(R.id.calculator_one);
-            calcOne.setOnClickListener(this);
 
-            calcTwo = (TextView) rootView.findViewById(R.id.calculator_two);
-            calcTwo.setOnClickListener(this);
-
-            calcThree = (TextView) rootView.findViewById(R.id.calculator_three);
-            calcThree.setOnClickListener(this);
-
-            calcFour = (TextView) rootView.findViewById(R.id.calculator_four);
-            calcFour.setOnClickListener(this);
-
-            calcFive = (TextView) rootView.findViewById(R.id.calculator_five);
-            calcFive.setOnClickListener(this);
-
-            calcSix = (TextView) rootView.findViewById(R.id.calculator_six);
-            calcSix.setOnClickListener(this);
-
-            calcSeven = (TextView) rootView.findViewById(R.id.calculator_seven);
-            calcSeven.setOnClickListener(this);
-
-            calcEight = (TextView) rootView.findViewById(R.id.calculator_eight);
-            calcEight.setOnClickListener(this);
-
-            calcNine = (TextView) rootView.findViewById(R.id.calculator_nine);
-            calcNine.setOnClickListener(this);
-
-            calcZero = (TextView) rootView.findViewById(R.id.calculator_zero);
+            calcZero = (Button) rootView.findViewById(R.id.calculator_zero);
             calcZero.setOnClickListener(this);
 
-            calcClear = (TextView) rootView.findViewById(R.id.calculator_clear);
+            calcOne = (Button) rootView.findViewById(R.id.calculator_one);
+            calcOne.setOnClickListener(this);
+
+            calcTwo = (Button) rootView.findViewById(R.id.calculator_two);
+            calcTwo.setOnClickListener(this);
+
+            calcThree = (Button) rootView.findViewById(R.id.calculator_three);
+            calcThree.setOnClickListener(this);
+
+            calcFour = (Button) rootView.findViewById(R.id.calculator_four);
+            calcFour.setOnClickListener(this);
+
+            calcFive = (Button) rootView.findViewById(R.id.calculator_five);
+            calcFive.setOnClickListener(this);
+
+            calcSix = (Button) rootView.findViewById(R.id.calculator_six);
+            calcSix.setOnClickListener(this);
+
+            calcSeven = (Button) rootView.findViewById(R.id.calculator_seven);
+            calcSeven.setOnClickListener(this);
+
+            calcEight = (Button) rootView.findViewById(R.id.calculator_eight);
+            calcEight.setOnClickListener(this);
+
+            calcNine = (Button) rootView.findViewById(R.id.calculator_nine);
+            calcNine.setOnClickListener(this);
+
+
+
+            calcClear = (Button) rootView.findViewById(R.id.calculator_clear);
             calcClear.setOnClickListener(this);
 
-            calcPoint = (TextView) rootView.findViewById(R.id.calculator_point);
+            calcPoint = (Button) rootView.findViewById(R.id.calculator_point);
             calcPoint.setOnClickListener(this);
 
-            calcEquals = (TextView) rootView.findViewById(R.id.calculator_equals);
-            calcEquals.setOnClickListener(this);
-
-            // Operators
-
-
-            calcPlus = (TextView) rootView.findViewById(R.id.calculator_add);
-            calcPlus.setOnClickListener(this);
-
-            calcMinus = (TextView) rootView.findViewById(R.id.calculator_subtract);
+            calcMinus = (Button) rootView.findViewById(R.id.calculator_subtract);
             calcMinus.setOnClickListener(this);
 
-            calcDivide = (TextView) rootView.findViewById(R.id.calculator_divide);
+            calcTimes = (Button) rootView.findViewById(R.id.calculator_multiply);
+            calcTimes.setOnClickListener(this);
+
+            calcDivide = (Button) rootView.findViewById(R.id.calculator_divide);
             calcDivide.setOnClickListener(this);
 
-            calcTimes = (TextView) rootView.findViewById(R.id.calculator_multiply);
-            calcTimes.setOnClickListener(this);
+            calcPlus = (Button) rootView.findViewById(R.id.calculator_add);
+            calcPlus.setOnClickListener(this);
+
+            calcEquals = (Button) rootView.findViewById(R.id.calculator_equals);
+            calcEquals.setOnClickListener(this);
 
             return rootView;
         }
 
 
-        // When calculator numbers are pressed
-        public void calcNumClick(int num)
+        ArrayList<String> equ = new ArrayList<String>();
+        Boolean hasPoint=false;
+
+        @Override
+        public void onPause()
+        {
+            super.onPause();
+
+            EditText calcDisplay = (EditText) getActivity().findViewById(R.id.display_content);
+            calcDisplay.setText("0");
+
+            equ.clear();
+
+        }
+
+        // ADD OPERATOR ONCLICKLISTENERS & EVENTS... POINT CHECK, DISPLAY ON OLDCALCDISPLAY
+        public void numClick(int num, EditText calcDisplay)
         {
 
-            operatorPlus=false;
-            operatorDivide=false;
-            operatorTimes=false;
-            operatorMinus=false;
-
-
-            String oldCalcDisplay = calcDisplay.getText().toString();
-            if(num!=0) // If you don't press 0
+            if(num!=0)
             {
-                if(oldCalcDisplay=="0")
+                if (Double.parseDouble(calcDisplay.getText().toString()) == 0.0)
                 {
                     calcDisplay.setText("");
-                    oldCalcDisplay="";
                 }
-                String newCalcDisplay = oldCalcDisplay + Integer.toString(num);
-                calcDisplay.setText(newCalcDisplay);
 
-                numTwo = Double.parseDouble(newCalcDisplay);
+
+                calcDisplay.setText(calcDisplay.getText().toString() + Integer.toString(num));
+                equ.add(Integer.toString(num));
             }
 
-            if(num==0) // If you press 0
+            else if(num==0)
             {
-                if(oldCalcDisplay=="0")
+                if (Double.parseDouble(calcDisplay.getText().toString()) == 0.0)
                 {
-                    calcDisplay.setText(oldCalcDisplay);
+                    calcDisplay.setText(calcDisplay.getText().toString());
                 }
                 else
                 {
-                    String newCalcDisplay = oldCalcDisplay + Integer.toString(num);
-                    calcDisplay.setText(newCalcDisplay);
-
-                    numTwo = Double.parseDouble(newCalcDisplay);
+                    calcDisplay.setText(calcDisplay.getText().toString() + Integer.toString(num));
+                    equ.add(Integer.toString(num));
                 }
             }
 
+
+
+
+            for(int i = 0; i<equ.size()-1; i++)
+            {
+                Log.i("Num", equ.get(i));
+            }
+        }
+
+        public void addOperator(String op, EditText calcDisplay, EditText oldCalcDisplay)
+        {
+
+            if(equ.size()==0)
+            {
+                calcDisplay.setText("0");
+            }
+            else if(equ.get(equ.size()-1)=="÷" || equ.get(equ.size()-1)=="-" || equ.get(equ.size()-1)=="+" || equ.get(equ.size()-1)=="×")
+            {
+                equ.remove(equ.size() -1);
+                oldCalcDisplay.setText(oldCalcDisplay.getText().toString().substring(0, oldCalcDisplay.getText().toString().length()-1));
+
+                equ.add(op);
+                oldCalcDisplay.setText(oldCalcDisplay.getText().toString() + op);
+            }
+            else
+            {
+                equ.add(op);
+
+                oldCalcDisplay.setText(oldCalcDisplay.getText().toString() + calcDisplay.getText().toString() + op);
+                calcDisplay.setText("0");
+            }
+            hasPoint=false;
         }
 
 
-        private static String removeTrailingZeros(double d) {
-            return String.valueOf(d).replaceAll("[0]*$", "").replaceAll(".$", "");
-        }
-
-        // Calculator button press switch
         @Override
         public void onClick(View v)
         {
+
+            EditText calcDisplay = (EditText) getActivity().findViewById(R.id.display_content);
+            EditText oldCalcDisplay = (EditText) getActivity().findViewById(R.id.display_old_content);
+
             switch(v.getId())
             {
-                case R.id.calculator_one:
-                    calcNumClick(1);
-                    break;
-
-                case R.id.calculator_two:
-                    calcNumClick(2);
-                    break;
-
-                case R.id.calculator_three:
-                    calcNumClick(3);
-                    break;
-
-                case R.id.calculator_four:
-                    calcNumClick(4);
-                    break;
-
-                case R.id.calculator_five:
-                    calcNumClick(5);
-                    break;
-
-                case R.id.calculator_six:
-                    calcNumClick(6);
-                    break;
-
-                case R.id.calculator_seven:
-                    calcNumClick(7);
-                    break;
-
-                case R.id.calculator_eight:
-                    calcNumClick(8);
-                    break;
-
-                case R.id.calculator_nine:
-                    calcNumClick(9);
-                    break;
-
                 case R.id.calculator_zero:
-                    calcNumClick(0);
+                    numClick(0, calcDisplay);
                     break;
+                case R.id.calculator_one:
+                    numClick(1, calcDisplay);
+                    break;
+                case R.id.calculator_two:
+                    numClick(2, calcDisplay);
+                    break;
+                case R.id.calculator_three:
+                    numClick(3, calcDisplay);
+                    break;
+                case R.id.calculator_four:
+                    numClick(4, calcDisplay);
+                    break;
+                case R.id.calculator_five:
+                    numClick(5, calcDisplay);
+                    break;
+                case R.id.calculator_six:
+                    numClick(6, calcDisplay);
+                    break;
+                case R.id.calculator_seven:
+                    numClick(7,calcDisplay);
+                    break;
+                case R.id.calculator_eight:
+                    numClick(8, calcDisplay);
+                    break;
+                case R.id.calculator_nine:
+                    numClick(9, calcDisplay);
+                    break;
+
 
                 case R.id.calculator_clear:
-                    // Basically resets everything
-
-
-                    operatorPlus=false;
-                    operatorDivide=false;
-                    operatorTimes=false;
-                    operatorMinus=false;
-
-
-                    calcOldDisplay.setText("");
+                    equ.clear();
                     calcDisplay.setText("0");
-                    numOne=0.0;
-                    numTwo=0.0;
-                    result=0.0;
-                    operatorIs="";
+                    oldCalcDisplay.setText("");
+                    hasPoint = false;
                     break;
 
                 case R.id.calculator_point:
-                    String currentContent = calcDisplay.getText().toString();
-                    if(currentContent.contains(".")) // There obviously can't be two decimal points
+                    if(!hasPoint)
                     {
-                        calcDisplay.setText(currentContent);
-                    }
-                    else
-                    {
-                        String newContent = currentContent + '.';
+                        equ.add(".");
+                        calcDisplay.setText(calcDisplay.getText().toString() + ".");
 
-                        calcDisplay.setText(newContent);
+                        hasPoint=true;
                     }
                     break;
 
-
-
-
-
-                // Operators
                 case R.id.calculator_add:
-                    if(!operatorPlus)
-                    {
-                        operatorPlus=true;
-                        operatorDivide=false;
-                        operatorTimes=false;
-                        operatorMinus=false;
-
-
-                        operatorIs = "plus";
-                        if (numOne == 0)
-                        {
-                            numOne += numTwo;
-                        }
-                        else if (result != 0.0)
-                        {
-                            numOne = result;
-                        }
-                        else
-                        {
-                            numOne += numTwo;
-                        }
-                        numTwo = 0.0;
-
-                        if(numOne%1==0)
-                        {
-                            String newNum = removeTrailingZeros(numOne);
-                            calcOldDisplay.setText(newNum + "+");
-                        }
-                        else
-                        {
-                            calcOldDisplay.setText(Double.toString(numOne) + "+");
-                        }
-                        calcDisplay.setText("");
-                    }
+                    addOperator("+", calcDisplay, oldCalcDisplay);
                     break;
+
                 case R.id.calculator_subtract:
-                    if(!operatorMinus)
-                    {
-                        operatorPlus=false;
-                        operatorDivide=false;
-                        operatorTimes=false;
-                        operatorMinus=true;
-
-                        operatorIs = "minus";
-                        if (numOne == 0)
-                        {
-                            numOne += numTwo;
-                        }
-                        else if (result != 0.0)
-                        {
-                            numOne = result;
-                        }
-                        else
-                        {
-                            numOne -= numTwo;
-                        }
-                        numTwo = 0.0;
-
-                        if(numOne%1==0)
-                        {
-                            String newNum = removeTrailingZeros(numOne);
-                            calcOldDisplay.setText(newNum + "-");
-                        }
-                        else
-                        {
-                            calcOldDisplay.setText(Double.toString(numOne) + "-");
-                        }
-
-                        calcDisplay.setText("");
-                    }
+                    addOperator("-", calcDisplay, oldCalcDisplay);
                     break;
+
                 case R.id.calculator_divide:
-                    if(!operatorDivide)
-                    {
-                        operatorPlus=false;
-                        operatorDivide=true;
-                        operatorTimes=false;
-                        operatorMinus=false;
-
-                        operatorIs = "divide";
-                        if (numOne == 0) {
-                            numOne += numTwo;
-                        } else if (result != 0.0) {
-                            numOne = result;
-                        } else {
-                            numOne /= numTwo;
-                        }
-                        numTwo = 0.0;
-
-                        if(numOne%1==0)
-                        {
-                            String newNum = removeTrailingZeros(numOne);
-                            calcOldDisplay.setText(newNum + "÷");
-                        }
-                        else
-                        {
-                            calcOldDisplay.setText(Double.toString(numOne) + "÷");
-                        }
-
-
-                        calcDisplay.setText("");
-                    }
+                    addOperator("÷", calcDisplay, oldCalcDisplay);
                     break;
+
                 case R.id.calculator_multiply:
-                    if(!operatorTimes)
-                    {
-                        operatorPlus=false;
-                        operatorDivide=false;
-                        operatorTimes=true;
-                        operatorMinus=false;
-
-                        operatorIs = "multiply";
-                        if (numOne == 0) {
-                            numOne += numTwo;
-                        } else if (result != 0.0) {
-                            numOne = result;
-                        } else {
-                            numOne *= numTwo;
-                        }
-                        numTwo = 0.0;
-
-                        if(numOne%1==0)
-                        {
-                            String newNum = removeTrailingZeros(numOne);
-                            calcOldDisplay.setText(newNum + "×");
-                        }
-                        else
-                        {
-                            calcOldDisplay.setText(Double.toString(numOne) + "×");
-                        }
-
-
-                        calcDisplay.setText("");
-                    }
+                    addOperator("×", calcDisplay, oldCalcDisplay);
                     break;
-
 
                 case R.id.calculator_equals:
-
-                    operatorPlus=false;
-                    operatorDivide=false;
-                    operatorTimes=false;
-                    operatorMinus=false;
-
-
-                    if(operatorIs=="plus")
-                    {
-                        result = numOne+numTwo;
-
-                        if(result%1!=0)
-                        {
-                            BigDecimal bd = new BigDecimal(result);
-                            bd = bd.setScale(3, RoundingMode.HALF_UP);
-
-                            result = bd.doubleValue();
-
-                            calcDisplay.setText(Double.toString(result));
-
-                        }
-                        else if(result%1==0)
-                        {
-                            String calcResult = removeTrailingZeros(result);
-                            calcDisplay.setText(calcResult);
-                        }
-
-
-                        calcOldDisplay.setText("");
-                        operatorIs="";
-
-                        numOne=result;
-                        numTwo=0.0;
-                    }
-                    if(operatorIs=="minus")
-                    {
-                        result = numOne-numTwo;
-
-                        if(result%1!=0)
-                        {
-                            BigDecimal bd = new BigDecimal(result);
-                            bd = bd.setScale(3, RoundingMode.HALF_UP);
-
-                            result = bd.doubleValue();
-
-                            calcDisplay.setText(Double.toString(result));
-
-                        }
-                        else if(result%1==0)
-                        {
-                            String calcResult = removeTrailingZeros(result);
-                            calcDisplay.setText(calcResult);
-                        }
-
-                        calcOldDisplay.setText("");
-                        operatorIs="";
-
-                        numOne=result;
-
-                    }
-                    if(operatorIs=="divide")
-                    {
-                        result = numOne/numTwo;
-
-                        if(result%1!=0)
-                        {
-                            BigDecimal bd = new BigDecimal(result);
-                            bd = bd.setScale(3, RoundingMode.HALF_UP);
-
-                            result = bd.doubleValue();
-
-                            calcDisplay.setText(Double.toString(result));
-
-                        }
-                        else if(result%1==0)
-                        {
-                            String calcResult = removeTrailingZeros(result);
-                            calcDisplay.setText(calcResult);
-                        }
-
-                        calcOldDisplay.setText("");
-                        operatorIs="";
-
-                        numOne=result;
-                    }
-                    if(operatorIs=="multiply")
-                    {
-                        result = numOne*numTwo;
-
-                        if(result%1!=0)
-                        {
-                            BigDecimal bd = new BigDecimal(result);
-                            bd = bd.setScale(3, RoundingMode.HALF_UP);
-
-                            result = bd.doubleValue();
-
-                            calcDisplay.setText(Double.toString(result));
-
-                        }
-                        else if(result%1==0)
-                        {
-                            String calcResult = removeTrailingZeros(result);
-                            calcDisplay.setText(calcResult);
-                        }
-
-                        calcOldDisplay.setText("");
-                        operatorIs="";
-
-                        numOne=result;
-                    }
+                    String equation = oldCalcDisplay.getText().toString() + calcDisplay.getText().toString();
+                    Log.i("Result", equation);
+                    // Need to find a way to convert string to a math expression !
                     break;
+
+
             }
-        } // End switch
+        }
+
+
+
     }
+
 
 
     public static class CaseFragment extends Fragment {
