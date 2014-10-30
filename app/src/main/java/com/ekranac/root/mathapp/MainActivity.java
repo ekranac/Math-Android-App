@@ -1,15 +1,10 @@
 package com.ekranac.root.mathapp;
 
-import java.lang.reflect.Array;
-import java.math.BigDecimal;
-import java.math.RoundingMode;
-import java.text.DecimalFormat;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Locale;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 import android.app.Activity;
 import android.app.Fragment;
@@ -19,22 +14,24 @@ import android.os.Bundle;
 import android.support.v4.view.ViewPager;
 import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.view.animation.AnimationUtils;
-import android.widget.Adapter;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
-import org.xml.sax.Parser;
+
+import bsh.EvalError;
+import bsh.Interpreter;
+import bsh.InterpreterError;
 
 
 public class MainActivity extends Activity {
+
 
     SectionsPagerAdapter mSectionsPagerAdapter;
 
@@ -273,9 +270,11 @@ public class MainActivity extends Activity {
 
         }
 
+
         // ADD OPERATOR ONCLICKLISTENERS & EVENTS... POINT CHECK, DISPLAY ON OLDCALCDISPLAY
-        public void numClick(int num, EditText calcDisplay)
+        public void numClick(int num)
         {
+            EditText calcDisplay = (EditText) getActivity().findViewById(R.id.display_content);
 
             if(num!=0)
             {
@@ -287,6 +286,7 @@ public class MainActivity extends Activity {
 
                 calcDisplay.setText(calcDisplay.getText().toString() + Integer.toString(num));
                 equ.add(Integer.toString(num));
+
             }
 
             else if(num==0)
@@ -299,6 +299,7 @@ public class MainActivity extends Activity {
                 {
                     calcDisplay.setText(calcDisplay.getText().toString() + Integer.toString(num));
                     equ.add(Integer.toString(num));
+
                 }
             }
 
@@ -311,8 +312,11 @@ public class MainActivity extends Activity {
             }
         }
 
-        public void addOperator(String op, EditText calcDisplay, EditText oldCalcDisplay)
+        public void addOperator(String op)
         {
+
+            EditText calcDisplay = (EditText) getActivity().findViewById(R.id.display_content);
+            EditText oldCalcDisplay = (EditText) getActivity().findViewById(R.id.display_old_content);
 
             if(equ.size()==0)
             {
@@ -347,34 +351,34 @@ public class MainActivity extends Activity {
             switch(v.getId())
             {
                 case R.id.calculator_zero:
-                    numClick(0, calcDisplay);
+                    numClick(0);
                     break;
                 case R.id.calculator_one:
-                    numClick(1, calcDisplay);
+                    numClick(1);
                     break;
                 case R.id.calculator_two:
-                    numClick(2, calcDisplay);
+                    numClick(2);
                     break;
                 case R.id.calculator_three:
-                    numClick(3, calcDisplay);
+                    numClick(3);
                     break;
                 case R.id.calculator_four:
-                    numClick(4, calcDisplay);
+                    numClick(4);
                     break;
                 case R.id.calculator_five:
-                    numClick(5, calcDisplay);
+                    numClick(5);
                     break;
                 case R.id.calculator_six:
-                    numClick(6, calcDisplay);
+                    numClick(6);
                     break;
                 case R.id.calculator_seven:
-                    numClick(7,calcDisplay);
+                    numClick(7);
                     break;
                 case R.id.calculator_eight:
-                    numClick(8, calcDisplay);
+                    numClick(8);
                     break;
                 case R.id.calculator_nine:
-                    numClick(9, calcDisplay);
+                    numClick(9);
                     break;
 
 
@@ -396,24 +400,41 @@ public class MainActivity extends Activity {
                     break;
 
                 case R.id.calculator_add:
-                    addOperator("+", calcDisplay, oldCalcDisplay);
+                    addOperator("+");
                     break;
 
                 case R.id.calculator_subtract:
-                    addOperator("-", calcDisplay, oldCalcDisplay);
+                    addOperator("-");
                     break;
 
                 case R.id.calculator_divide:
-                    addOperator("÷", calcDisplay, oldCalcDisplay);
+                    addOperator("÷");
                     break;
 
                 case R.id.calculator_multiply:
-                    addOperator("×", calcDisplay, oldCalcDisplay);
+                    addOperator("×");
                     break;
 
                 case R.id.calculator_equals:
                     String equation = oldCalcDisplay.getText().toString() + calcDisplay.getText().toString();
-                    Log.i("Result", equation);
+                    equation = equation.replace("×","*");
+                    equation = equation.replace("÷","/");
+
+                    try {
+                        Interpreter interpreter = new Interpreter();
+                        interpreter.eval("result = " + equation);
+                        //Log.i("Muc", interpreter.get("result").toString());
+                        calcDisplay.setText(interpreter.get("result").toString());
+                        oldCalcDisplay.setText("");
+
+                    }
+                    catch (EvalError error)
+                    {
+                        Log.i("EvalError", error.toString());
+                    }
+
+
+
                     // Need to find a way to convert string to a math expression !
                     break;
 
