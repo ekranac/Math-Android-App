@@ -70,8 +70,6 @@ public class MainActivity extends Activity {
                     return new CalculatorFragment();
                 case 1:
                     return new PlaceholderFragment();
-                case 2:
-                    return new CaseFragment();
             }
             return null;
         }
@@ -79,8 +77,8 @@ public class MainActivity extends Activity {
         // Number of pages
         @Override
         public int getCount() {
-            // Show 3 total pages.
-            return 3;
+            // Show 2 total pages.
+            return 2;
         }
 
         // Page/ fragment title
@@ -113,11 +111,11 @@ public class MainActivity extends Activity {
             // Raw data
             String[] forecastArray =
                     {
-                            "Burek",
-                            "Burek",
-                            "Burek",
-                            "Burek",
-                            "Burek",
+                            "Razdalja dveh točk v ravnini",
+                            "Linearna funkcija",
+                            "Naklonski kot premice",
+                            "Smerni koeficient",
+                            "Kot med premicama",
                             "Burek",
                             "Burek",
                             "Burek",
@@ -188,6 +186,7 @@ public class MainActivity extends Activity {
 
 
 
+
             View rootView = inflater.inflate(R.layout.fragment_calculator, container, false);
 
 
@@ -254,6 +253,7 @@ public class MainActivity extends Activity {
             return rootView;
         }
 
+        String doubleEquation;
 
         ArrayList<String> equ = new ArrayList<String>();
         Boolean hasPoint=false;
@@ -267,6 +267,7 @@ public class MainActivity extends Activity {
             calcDisplay.setText("0");
 
             equ.clear();
+
 
         }
 
@@ -286,6 +287,9 @@ public class MainActivity extends Activity {
 
                 calcDisplay.setText(calcDisplay.getText().toString() + Integer.toString(num));
                 equ.add(Integer.toString(num));
+
+
+
 
             }
 
@@ -423,11 +427,11 @@ public class MainActivity extends Activity {
                     try {
                         Interpreter interpreter = new Interpreter();
                         interpreter.eval("result = " + equation);
-                        //Log.i("Muc", interpreter.get("result").toString());
                         calcDisplay.setText(interpreter.get("result").toString());
                         oldCalcDisplay.setText("");
 
                     }
+
                     catch (EvalError error)
                     {
                         Log.i("EvalError", error.toString());
@@ -444,19 +448,6 @@ public class MainActivity extends Activity {
 
 
 
-    }
-
-
-
-    public static class CaseFragment extends Fragment {
-        private static final String ARG_SECTION_NUMBER = "section_number";
-        @Override
-        public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                                 Bundle savedInstanceState) {
-            View rootView = inflater.inflate(R.layout.fragment_case, container, false);
-
-            return rootView;
-        }
     }
 
 }

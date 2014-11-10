@@ -20,7 +20,7 @@
                 android:textSize="@dimen/calculatorOldDisplayNumSize"
                 android:id="@+id/display_old_content"
                 android:background="@color/white"
-                android:gravity="top|left"
+                android:gravity="top|right"
                 android:layout_weight="0.10"
                 android:textColor="@color/darkcloud"
                 android:editable="false"/>
@@ -32,7 +32,7 @@
                 android:textSize="@dimen/calculatorDisplayNumSize"
                 android:id="@+id/display_content"
                 android:background="@color/white"
-                android:gravity="bottom|left"
+                android:gravity="bottom|right"
                 android:scrollHorizontally="true"
                 android:singleLine="true"
                 android:editable="false"/>
