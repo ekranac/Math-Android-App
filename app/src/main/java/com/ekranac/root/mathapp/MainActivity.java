@@ -423,11 +423,28 @@ public class MainActivity extends Activity {
                     String equation = oldCalcDisplay.getText().toString() + calcDisplay.getText().toString();
                     equation = equation.replace("×","*");
                     equation = equation.replace("÷","/");
+                    if(!equation.contains("."))
+                    {
+                        equation = equation + ".";
+                    }
 
                     try {
+                        String finalResult = "";
                         Interpreter interpreter = new Interpreter();
                         interpreter.eval("result = " + equation);
-                        calcDisplay.setText(interpreter.get("result").toString());
+
+                        double dFinalResult = Double.valueOf(interpreter.get("result").toString());
+
+                        if(dFinalResult % 1==0)
+                        {
+                            finalResult = Double.toString(dFinalResult).replace(".0","");
+                        }
+                        else
+                        {
+                            finalResult = Double.toString(dFinalResult);
+                        }
+
+                        calcDisplay.setText(finalResult);
                         oldCalcDisplay.setText("");
 
                     }
