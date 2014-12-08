@@ -1,14 +1,374 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".MainActivity$PlaceholderFragment"
-    android:background="@color/white">
+<?xml version="1.0" encoding="utf-8"?>
 
-    <ListView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/listview_main"
-        android:background="@color/white"></ListView>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:weightSum="1.0"
+    android:background="@color/belize">
 
-</FrameLayout>
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="60dp"
+        android:background="@color/belize"
+        android:layout_weight="0.2"
+        android:orientation="horizontal"
+        android:weightSum="1.0"
+        android:id="@+id/main_first_row"
+        android:layout_marginBottom="2px">
+
+        <RelativeLayout
+            android:layout_width="50dp"
+            android:layout_height="fill_parent"
+            android:gravity="center"
+            android:layout_weight="0.5"
+            android:id="@+id/icon_one"
+            android:layout_marginRight="2px"
+            android:background="@color/white">
+
+            <ImageButton
+                android:id="@+id/imageButton1"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:background="@null"
+                android:src="@drawable/ic_launcher"
+                android:layout_centerHorizontal="true"
+                android:clickable="true"
+                android:duplicateParentState="true">
+            </ImageButton>
+
+            <TextView
+                android:layout_width="fill_parent"
+                android:id="@+id/a_text"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/imageButton1"
+                android:layout_centerInParent="true"
+                android:clickable="true"
+                android:gravity="center_horizontal"
+                android:text="text"
+                android:duplicateParentState="true"/>
+
+        </RelativeLayout>
+
+
+        <RelativeLayout
+            android:layout_width="50dp"
+            android:layout_height="fill_parent"
+            android:layout_weight="0.5"
+            android:gravity="center"
+            android:id="@+id/icon_two"
+            android:background="@color/white"
+            android:layout_marginLeft="2px">
+
+            <ImageButton
+                android:id="@+id/imageButton2"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:background="@null"
+                android:src="@drawable/ic_launcher"
+                android:layout_centerHorizontal="true">
+            </ImageButton>
+
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/imageButton2"
+                android:layout_centerInParent="true"
+                android:clickable="false"
+                android:id="@+id/b_text"
+                android:gravity="center_horizontal"
+                android:text="text" />
+
+        </RelativeLayout>
+
+        </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="60dp"
+        android:background="@color/belize"
+        android:layout_weight="0.2"
+        android:orientation="horizontal"
+        android:weightSum="1.0"
+        android:id="@+id/main_second_row"
+        android:layout_marginBottom="2px">
+
+        <RelativeLayout
+            android:layout_width="50dp"
+            android:layout_height="fill_parent"
+            android:gravity="center"
+            android:layout_weight="0.5"
+            android:id="@+id/icon_three"
+            android:background="@color/white"
+            android:layout_marginRight="2px">
+
+            <ImageButton
+                android:id="@+id/imageButton3"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:background="@null"
+                android:src="@drawable/ic_launcher"
+                android:layout_centerHorizontal="true">
+            </ImageButton>
+
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/imageButton3"
+                android:layout_centerInParent="true"
+                android:clickable="false"
+                android:id="@+id/c_text"
+                android:gravity="center_horizontal"
+                android:text="text" />
+        </RelativeLayout>
+
+
+        <RelativeLayout
+            android:layout_width="50dp"
+            android:layout_height="fill_parent"
+            android:layout_weight="0.5"
+            android:gravity="center"
+            android:id="@+id/icon_four"
+            android:background="@color/white"
+            android:layout_marginLeft="2px">
+
+            <ImageButton
+                android:id="@+id/imageButton4"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:background="@null"
+                android:src="@drawable/ic_launcher"
+                android:layout_centerHorizontal="true">
+            </ImageButton>
+
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/imageButton4"
+                android:layout_centerInParent="true"
+                android:clickable="false"
+                android:id="@+id/d_text"
+                android:gravity="center_horizontal"
+                android:text="text" />
+
+        </RelativeLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="60dp"
+        android:background="@color/belize"
+        android:layout_weight="0.2"
+        android:orientation="horizontal"
+        android:weightSum="1.0"
+        android:id="@+id/main_third_row"
+        android:layout_marginBottom="2px">
+
+        <RelativeLayout
+            android:layout_width="50dp"
+            android:layout_height="fill_parent"
+            android:gravity="center"
+            android:layout_weight="0.5"
+            android:id="@+id/icon_five"
+            android:background="@color/white"
+            android:layout_marginRight="2px">
+
+            <ImageButton
+                android:id="@+id/imageButton5"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:background="@null"
+                android:src="@drawable/ic_launcher"
+                android:layout_centerHorizontal="true">
+            </ImageButton>
+
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/imageButton5"
+                android:layout_centerInParent="true"
+                android:clickable="false"
+                android:id="@+id/e_text"
+                android:gravity="center_horizontal"
+                android:text="text" />
+        </RelativeLayout>
+
+
+        <RelativeLayout
+            android:layout_width="50dp"
+            android:layout_height="fill_parent"
+            android:layout_weight="0.5"
+            android:id="@+id/icon_six"
+            android:gravity="center"
+            android:background="@color/white"
+            android:layout_marginLeft="2px">
+
+            <ImageButton
+                android:id="@+id/imageButton6"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:background="@null"
+                android:src="@drawable/ic_launcher"
+                android:layout_centerHorizontal="true">
+            </ImageButton>
+
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/imageButton6"
+                android:layout_centerInParent="true"
+                android:clickable="false"
+                android:id="@+id/f_text"
+                android:gravity="center_horizontal"
+                android:text="text" />
+
+        </RelativeLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="60dp"
+        android:background="@color/belize"
+        android:layout_weight="0.2"
+        android:orientation="horizontal"
+        android:weightSum="1.0"
+        android:id="@+id/main_fourth_row"
+        android:layout_marginBottom="2px">
+
+        <RelativeLayout
+            android:layout_width="50dp"
+            android:layout_height="fill_parent"
+            android:gravity="center"
+            android:layout_weight="0.5"
+            android:id="@+id/icon_seven"
+            android:background="@color/white"
+            android:layout_marginRight="2px">
+
+            <ImageButton
+                android:id="@+id/imageButton7"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:background="@null"
+                android:src="@drawable/ic_launcher"
+                android:layout_centerHorizontal="true">
+            </ImageButton>
+
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/imageButton7"
+                android:layout_centerInParent="true"
+                android:id="@+id/g_text"
+                android:clickable="false"
+                android:gravity="center_horizontal"
+                android:text="text" />
+        </RelativeLayout>
+
+
+        <RelativeLayout
+            android:layout_width="50dp"
+            android:layout_height="fill_parent"
+            android:layout_weight="0.5"
+            android:gravity="center"
+            android:id="@+id/icon_eight"
+            android:background="@color/white"
+            android:layout_marginLeft="2px">
+
+            <ImageButton
+                android:id="@+id/imageButton8"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:background="@null"
+                android:src="@drawable/ic_launcher"
+                android:layout_centerHorizontal="true">
+            </ImageButton>
+
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/imageButton8"
+                android:layout_centerInParent="true"
+                android:clickable="false"
+                android:id="@+id/h_text"
+                android:gravity="center_horizontal"
+                android:text="text" />
+
+        </RelativeLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="60dp"
+        android:background="@color/belize"
+        android:layout_weight="0.2"
+        android:orientation="horizontal"
+        android:weightSum="1.0"
+        android:id="@+id/main_fifth_row"
+        android:layout_marginBottom="2px">
+
+        <RelativeLayout
+            android:layout_width="50dp"
+            android:layout_height="fill_parent"
+            android:gravity="center"
+            android:layout_weight="0.5"
+            android:id="@+id/icon_nine"
+            android:background="@color/white"
+            android:layout_marginRight="2px">
+
+            <ImageButton
+                android:id="@+id/imageButton9"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:background="@null"
+                android:src="@drawable/ic_launcher"
+                android:layout_centerHorizontal="true">
+            </ImageButton>
+
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/imageButton9"
+                android:layout_centerInParent="true"
+                android:clickable="false"
+                android:id="@+id/i_text"
+                android:gravity="center_horizontal"
+                android:text="text" />
+        </RelativeLayout>
+
+
+        <RelativeLayout
+            android:layout_width="50dp"
+            android:layout_height="fill_parent"
+            android:layout_weight="0.5"
+            android:gravity="center"
+            android:id="@+id/icon_ten"
+            android:background="@color/white"
+            android:layout_marginLeft="2px">
+
+            <ImageButton
+                android:id="@+id/imageButton10"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:background="@null"
+                android:src="@drawable/ic_launcher"
+                android:layout_centerHorizontal="true">
+            </ImageButton>
+
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/imageButton10"
+                android:layout_centerInParent="true"
+                android:id="@+id/j_text"
+                android:clickable="false"
+                android:gravity="center_horizontal"
+                android:text="text" />
+
+        </RelativeLayout>
+
+    </LinearLayout>
+
+
+</LinearLayout>

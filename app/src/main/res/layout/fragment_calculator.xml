@@ -32,7 +32,7 @@
                 android:textSize="@dimen/calculatorDisplayNumSize"
                 android:id="@+id/display_content"
                 android:background="@color/white"
-                android:gravity="bottom|right"
+                android:gravity="bottom|left"
                 android:scrollHorizontally="true"
                 android:singleLine="true"
                 android:editable="false"/>
